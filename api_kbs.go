@@ -27,18 +27,18 @@ type KBsAPIService service
 type ApiCreateKBSRequest struct {
 	ctx           context.Context
 	ApiService    *KBsAPIService
-	authorization *string
 	kB            *KB
-}
-
-func (r ApiCreateKBSRequest) Authorization(authorization string) ApiCreateKBSRequest {
-	r.authorization = &authorization
-	return r
+	authorization *string
 }
 
 // Knowledge base article that needs to be added to the portal
 func (r ApiCreateKBSRequest) KB(kB KB) ApiCreateKBSRequest {
 	r.kB = &kB
+	return r
+}
+
+func (r ApiCreateKBSRequest) Authorization(authorization string) ApiCreateKBSRequest {
+	r.authorization = &authorization
 	return r
 }
 
@@ -79,9 +79,6 @@ func (a *KBsAPIService) CreateKBSExecute(r ApiCreateKBSRequest) (*http.Response,
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
-	if r.authorization == nil {
-		return nil, reportError("authorization is required and must be specified")
-	}
 	if r.kB == nil {
 		return nil, reportError("kB is required and must be specified")
 	}
@@ -103,7 +100,9 @@ func (a *KBsAPIService) CreateKBSExecute(r ApiCreateKBSRequest) (*http.Response,
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
-	parameterAddToHeaderOrQuery(localVarHeaderParams, "authorization", r.authorization, "simple", "")
+	if r.authorization != nil {
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "authorization", r.authorization, "simple", "")
+	}
 	// body params
 	localVarPostBody = r.kB
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
@@ -147,8 +146,8 @@ func (a *KBsAPIService) CreateKBSExecute(r ApiCreateKBSRequest) (*http.Response,
 type ApiDeleteKBByIdRequest struct {
 	ctx           context.Context
 	ApiService    *KBsAPIService
-	authorization *string
 	kbId          int64
+	authorization *string
 }
 
 func (r ApiDeleteKBByIdRequest) Authorization(authorization string) ApiDeleteKBByIdRequest {
@@ -194,9 +193,6 @@ func (a *KBsAPIService) DeleteKBByIdExecute(r ApiDeleteKBByIdRequest) (*http.Res
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
-	if r.authorization == nil {
-		return nil, reportError("authorization is required and must be specified")
-	}
 
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
@@ -215,7 +211,9 @@ func (a *KBsAPIService) DeleteKBByIdExecute(r ApiDeleteKBByIdRequest) (*http.Res
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
-	parameterAddToHeaderOrQuery(localVarHeaderParams, "authorization", r.authorization, "simple", "")
+	if r.authorization != nil {
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "authorization", r.authorization, "simple", "")
+	}
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return nil, err
@@ -418,9 +416,6 @@ func (a *KBsAPIService) GetKBsExecute(r ApiGetKBsRequest) (*KBDataWrapper, *http
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
-	if r.authorization == nil {
-		return localVarReturnValue, nil, reportError("authorization is required and must be specified")
-	}
 
 	if r.name != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "name", r.name, "form", "")
@@ -495,7 +490,9 @@ func (a *KBsAPIService) GetKBsExecute(r ApiGetKBsRequest) (*KBDataWrapper, *http
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
-	parameterAddToHeaderOrQuery(localVarHeaderParams, "authorization", r.authorization, "simple", "")
+	if r.authorization != nil {
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "authorization", r.authorization, "simple", "")
+	}
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return localVarReturnValue, nil, err
@@ -546,8 +543,8 @@ func (a *KBsAPIService) GetKBsExecute(r ApiGetKBsRequest) (*KBDataWrapper, *http
 type ApiGetKbByIdRequest struct {
 	ctx           context.Context
 	ApiService    *KBsAPIService
-	authorization *string
 	kbId          int64
+	authorization *string
 }
 
 func (r ApiGetKbByIdRequest) Authorization(authorization string) ApiGetKbByIdRequest {
@@ -598,9 +595,6 @@ func (a *KBsAPIService) GetKbByIdExecute(r ApiGetKbByIdRequest) (*KBDataWrapper,
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
-	if r.authorization == nil {
-		return localVarReturnValue, nil, reportError("authorization is required and must be specified")
-	}
 
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
@@ -619,7 +613,9 @@ func (a *KBsAPIService) GetKbByIdExecute(r ApiGetKbByIdRequest) (*KBDataWrapper,
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
-	parameterAddToHeaderOrQuery(localVarHeaderParams, "authorization", r.authorization, "simple", "")
+	if r.authorization != nil {
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "authorization", r.authorization, "simple", "")
+	}
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return localVarReturnValue, nil, err
@@ -671,19 +667,19 @@ func (a *KBsAPIService) GetKbByIdExecute(r ApiGetKbByIdRequest) (*KBDataWrapper,
 type ApiUpdateKbByIdRequest struct {
 	ctx           context.Context
 	ApiService    *KBsAPIService
-	authorization *string
 	kbId          int64
 	kB            *KB
-}
-
-func (r ApiUpdateKbByIdRequest) Authorization(authorization string) ApiUpdateKbByIdRequest {
-	r.authorization = &authorization
-	return r
+	authorization *string
 }
 
 // KB fields that need to be updated to the portal
 func (r ApiUpdateKbByIdRequest) KB(kB KB) ApiUpdateKbByIdRequest {
 	r.kB = &kB
+	return r
+}
+
+func (r ApiUpdateKbByIdRequest) Authorization(authorization string) ApiUpdateKbByIdRequest {
+	r.authorization = &authorization
 	return r
 }
 
@@ -727,9 +723,6 @@ func (a *KBsAPIService) UpdateKbByIdExecute(r ApiUpdateKbByIdRequest) (*http.Res
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
-	if r.authorization == nil {
-		return nil, reportError("authorization is required and must be specified")
-	}
 	if r.kB == nil {
 		return nil, reportError("kB is required and must be specified")
 	}
@@ -751,7 +744,9 @@ func (a *KBsAPIService) UpdateKbByIdExecute(r ApiUpdateKbByIdRequest) (*http.Res
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
-	parameterAddToHeaderOrQuery(localVarHeaderParams, "authorization", r.authorization, "simple", "")
+	if r.authorization != nil {
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "authorization", r.authorization, "simple", "")
+	}
 	// body params
 	localVarPostBody = r.kB
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
@@ -796,19 +791,19 @@ func (a *KBsAPIService) UpdateKbByIdExecute(r ApiUpdateKbByIdRequest) (*http.Res
 type ApiUploadFileToKBIdRequest struct {
 	ctx           context.Context
 	ApiService    *KBsAPIService
-	authorization *string
 	kbId          int64
 	file          *os.File
-}
-
-func (r ApiUploadFileToKBIdRequest) Authorization(authorization string) ApiUploadFileToKBIdRequest {
-	r.authorization = &authorization
-	return r
+	authorization *string
 }
 
 // The file to upload.
 func (r ApiUploadFileToKBIdRequest) File(file *os.File) ApiUploadFileToKBIdRequest {
 	r.file = file
+	return r
+}
+
+func (r ApiUploadFileToKBIdRequest) Authorization(authorization string) ApiUploadFileToKBIdRequest {
+	r.authorization = &authorization
 	return r
 }
 
@@ -852,9 +847,6 @@ func (a *KBsAPIService) UploadFileToKBIdExecute(r ApiUploadFileToKBIdRequest) (*
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
-	if r.authorization == nil {
-		return nil, reportError("authorization is required and must be specified")
-	}
 	if r.file == nil {
 		return nil, reportError("file is required and must be specified")
 	}
@@ -876,7 +868,9 @@ func (a *KBsAPIService) UploadFileToKBIdExecute(r ApiUploadFileToKBIdRequest) (*
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
-	parameterAddToHeaderOrQuery(localVarHeaderParams, "authorization", r.authorization, "simple", "")
+	if r.authorization != nil {
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "authorization", r.authorization, "simple", "")
+	}
 	var fileLocalVarFormFileName string
 	var fileLocalVarFileName string
 	var fileLocalVarFileBytes []byte

@@ -122,9 +122,6 @@ func (a *TemplatesAPIService) GetFieldValuesExecute(r ApiGetFieldValuesRequest) 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
-	if r.authorization == nil {
-		return localVarReturnValue, nil, reportError("authorization is required and must be specified")
-	}
 
 	if r.templateId != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "templateId", r.templateId, "form", "")
@@ -164,7 +161,9 @@ func (a *TemplatesAPIService) GetFieldValuesExecute(r ApiGetFieldValuesRequest) 
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
-	parameterAddToHeaderOrQuery(localVarHeaderParams, "authorization", r.authorization, "simple", "")
+	if r.authorization != nil {
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "authorization", r.authorization, "simple", "")
+	}
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return localVarReturnValue, nil, err
@@ -215,9 +214,9 @@ func (a *TemplatesAPIService) GetFieldValuesExecute(r ApiGetFieldValuesRequest) 
 type ApiGetObjetTemplatesRequest struct {
 	ctx           context.Context
 	ApiService    *TemplatesAPIService
-	authorization *string
 	objectType    string
 	objectId      int64
+	authorization *string
 	name          *string
 	modifiedSince *string
 	limit         *int32
@@ -306,9 +305,6 @@ func (a *TemplatesAPIService) GetObjetTemplatesExecute(r ApiGetObjetTemplatesReq
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
-	if r.authorization == nil {
-		return localVarReturnValue, nil, reportError("authorization is required and must be specified")
-	}
 
 	if r.name != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "name", r.name, "form", "")
@@ -342,7 +338,9 @@ func (a *TemplatesAPIService) GetObjetTemplatesExecute(r ApiGetObjetTemplatesReq
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
-	parameterAddToHeaderOrQuery(localVarHeaderParams, "authorization", r.authorization, "simple", "")
+	if r.authorization != nil {
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "authorization", r.authorization, "simple", "")
+	}
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return localVarReturnValue, nil, err
@@ -484,9 +482,6 @@ func (a *TemplatesAPIService) GetTemplatesExecute(r ApiGetTemplatesRequest) (*Te
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
-	if r.authorization == nil {
-		return localVarReturnValue, nil, reportError("authorization is required and must be specified")
-	}
 
 	if r.id != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "id", r.id, "form", "")
@@ -523,7 +518,9 @@ func (a *TemplatesAPIService) GetTemplatesExecute(r ApiGetTemplatesRequest) (*Te
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
-	parameterAddToHeaderOrQuery(localVarHeaderParams, "authorization", r.authorization, "simple", "")
+	if r.authorization != nil {
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "authorization", r.authorization, "simple", "")
+	}
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return localVarReturnValue, nil, err
@@ -574,22 +571,22 @@ func (a *TemplatesAPIService) GetTemplatesExecute(r ApiGetTemplatesRequest) (*Te
 type ApiUpdFieldByObjectIdFieldIdRequest struct {
 	ctx                context.Context
 	ApiService         *TemplatesAPIService
-	authorization      *string
 	objectType         string
 	objectId           int64
 	templateId         int64
 	fieldId            int64
 	templateFieldValue *TemplateFieldValue
-}
-
-func (r ApiUpdFieldByObjectIdFieldIdRequest) Authorization(authorization string) ApiUpdFieldByObjectIdFieldIdRequest {
-	r.authorization = &authorization
-	return r
+	authorization      *string
 }
 
 // Example: {\&quot;value\&quot;:\&quot;2019-12-31\&quot;}  Date: \&quot;YYYY-MM-DD\&quot;  Decimal: 99.99  Integer: 1000  Password: \&quot;password\&quot;  Pull Down Menu: \&quot;pull down value\&quot;  Portal Object (all objects): [{\&quot;itemType\&quot;:\&quot;Agreement\&quot;,\&quot;id\&quot;:1}]  Text (Max 256 Characters): \&quot;text\&quot;  Text (Unlimited Characters): \&quot;text\&quot;  Yes/No (Checkbox): true/false  Multi Select Checkbox: [\&quot;value1\&quot;,\&quot;value2\&quot;]  Key/Value (all pairs): [{\&quot;key\&quot;:\&quot;key1\&quot;,\&quot;value\&quot;:\&quot;value1\&quot;},{\&quot;key\&quot;:\&quot;key2\&quot;,\&quot;value\&quot;:\&quot;value2\&quot;}]  Raiting: 5
 func (r ApiUpdFieldByObjectIdFieldIdRequest) TemplateFieldValue(templateFieldValue TemplateFieldValue) ApiUpdFieldByObjectIdFieldIdRequest {
 	r.templateFieldValue = &templateFieldValue
+	return r
+}
+
+func (r ApiUpdFieldByObjectIdFieldIdRequest) Authorization(authorization string) ApiUpdFieldByObjectIdFieldIdRequest {
+	r.authorization = &authorization
 	return r
 }
 
@@ -642,9 +639,6 @@ func (a *TemplatesAPIService) UpdFieldByObjectIdFieldIdExecute(r ApiUpdFieldByOb
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
-	if r.authorization == nil {
-		return nil, reportError("authorization is required and must be specified")
-	}
 	if r.templateFieldValue == nil {
 		return nil, reportError("templateFieldValue is required and must be specified")
 	}
@@ -666,7 +660,9 @@ func (a *TemplatesAPIService) UpdFieldByObjectIdFieldIdExecute(r ApiUpdFieldByOb
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
-	parameterAddToHeaderOrQuery(localVarHeaderParams, "authorization", r.authorization, "simple", "")
+	if r.authorization != nil {
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "authorization", r.authorization, "simple", "")
+	}
 	// body params
 	localVarPostBody = r.templateFieldValue
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)

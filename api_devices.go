@@ -27,18 +27,18 @@ type DevicesAPIService service
 type ApiCreateDeviceRequest struct {
 	ctx           context.Context
 	ApiService    *DevicesAPIService
-	authorization *string
 	device        *Device
-}
-
-func (r ApiCreateDeviceRequest) Authorization(authorization string) ApiCreateDeviceRequest {
-	r.authorization = &authorization
-	return r
+	authorization *string
 }
 
 // Device object that needs to be added to the portal
 func (r ApiCreateDeviceRequest) Device(device Device) ApiCreateDeviceRequest {
 	r.device = &device
+	return r
+}
+
+func (r ApiCreateDeviceRequest) Authorization(authorization string) ApiCreateDeviceRequest {
+	r.authorization = &authorization
 	return r
 }
 
@@ -79,9 +79,6 @@ func (a *DevicesAPIService) CreateDeviceExecute(r ApiCreateDeviceRequest) (*http
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
-	if r.authorization == nil {
-		return nil, reportError("authorization is required and must be specified")
-	}
 	if r.device == nil {
 		return nil, reportError("device is required and must be specified")
 	}
@@ -103,7 +100,9 @@ func (a *DevicesAPIService) CreateDeviceExecute(r ApiCreateDeviceRequest) (*http
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
-	parameterAddToHeaderOrQuery(localVarHeaderParams, "authorization", r.authorization, "simple", "")
+	if r.authorization != nil {
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "authorization", r.authorization, "simple", "")
+	}
 	// body params
 	localVarPostBody = r.device
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
@@ -147,19 +146,19 @@ func (a *DevicesAPIService) CreateDeviceExecute(r ApiCreateDeviceRequest) (*http
 type ApiCreateDeviceIPRequest struct {
 	ctx           context.Context
 	ApiService    *DevicesAPIService
-	authorization *string
 	deviceId      int64
 	iPPatch       *IPPatch
-}
-
-func (r ApiCreateDeviceIPRequest) Authorization(authorization string) ApiCreateDeviceIPRequest {
-	r.authorization = &authorization
-	return r
+	authorization *string
 }
 
 // Device IP object that needs to be added to the portal
 func (r ApiCreateDeviceIPRequest) IPPatch(iPPatch IPPatch) ApiCreateDeviceIPRequest {
 	r.iPPatch = &iPPatch
+	return r
+}
+
+func (r ApiCreateDeviceIPRequest) Authorization(authorization string) ApiCreateDeviceIPRequest {
+	r.authorization = &authorization
 	return r
 }
 
@@ -203,9 +202,6 @@ func (a *DevicesAPIService) CreateDeviceIPExecute(r ApiCreateDeviceIPRequest) (*
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
-	if r.authorization == nil {
-		return nil, reportError("authorization is required and must be specified")
-	}
 	if r.iPPatch == nil {
 		return nil, reportError("iPPatch is required and must be specified")
 	}
@@ -227,7 +223,9 @@ func (a *DevicesAPIService) CreateDeviceIPExecute(r ApiCreateDeviceIPRequest) (*
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
-	parameterAddToHeaderOrQuery(localVarHeaderParams, "authorization", r.authorization, "simple", "")
+	if r.authorization != nil {
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "authorization", r.authorization, "simple", "")
+	}
 	// body params
 	localVarPostBody = r.iPPatch
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
@@ -271,19 +269,19 @@ func (a *DevicesAPIService) CreateDeviceIPExecute(r ApiCreateDeviceIPRequest) (*
 type ApiCreateDeviceMUrlRequest struct {
 	ctx           context.Context
 	ApiService    *DevicesAPIService
-	authorization *string
 	deviceId      int64
 	mUrl          *MUrl
-}
-
-func (r ApiCreateDeviceMUrlRequest) Authorization(authorization string) ApiCreateDeviceMUrlRequest {
-	r.authorization = &authorization
-	return r
+	authorization *string
 }
 
 // Device Management Url object that needs to be added to the portal
 func (r ApiCreateDeviceMUrlRequest) MUrl(mUrl MUrl) ApiCreateDeviceMUrlRequest {
 	r.mUrl = &mUrl
+	return r
+}
+
+func (r ApiCreateDeviceMUrlRequest) Authorization(authorization string) ApiCreateDeviceMUrlRequest {
+	r.authorization = &authorization
 	return r
 }
 
@@ -327,9 +325,6 @@ func (a *DevicesAPIService) CreateDeviceMUrlExecute(r ApiCreateDeviceMUrlRequest
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
-	if r.authorization == nil {
-		return nil, reportError("authorization is required and must be specified")
-	}
 	if r.mUrl == nil {
 		return nil, reportError("mUrl is required and must be specified")
 	}
@@ -351,7 +346,9 @@ func (a *DevicesAPIService) CreateDeviceMUrlExecute(r ApiCreateDeviceMUrlRequest
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
-	parameterAddToHeaderOrQuery(localVarHeaderParams, "authorization", r.authorization, "simple", "")
+	if r.authorization != nil {
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "authorization", r.authorization, "simple", "")
+	}
 	// body params
 	localVarPostBody = r.mUrl
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
@@ -395,19 +392,19 @@ func (a *DevicesAPIService) CreateDeviceMUrlExecute(r ApiCreateDeviceMUrlRequest
 type ApiCreateDeviceNoteRequest struct {
 	ctx           context.Context
 	ApiService    *DevicesAPIService
-	authorization *string
 	deviceId      int64
 	deviceNote    *DeviceNote
-}
-
-func (r ApiCreateDeviceNoteRequest) Authorization(authorization string) ApiCreateDeviceNoteRequest {
-	r.authorization = &authorization
-	return r
+	authorization *string
 }
 
 // Device Note object that needs to be added to the portal
 func (r ApiCreateDeviceNoteRequest) DeviceNote(deviceNote DeviceNote) ApiCreateDeviceNoteRequest {
 	r.deviceNote = &deviceNote
+	return r
+}
+
+func (r ApiCreateDeviceNoteRequest) Authorization(authorization string) ApiCreateDeviceNoteRequest {
+	r.authorization = &authorization
 	return r
 }
 
@@ -451,9 +448,6 @@ func (a *DevicesAPIService) CreateDeviceNoteExecute(r ApiCreateDeviceNoteRequest
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
-	if r.authorization == nil {
-		return nil, reportError("authorization is required and must be specified")
-	}
 	if r.deviceNote == nil {
 		return nil, reportError("deviceNote is required and must be specified")
 	}
@@ -475,7 +469,9 @@ func (a *DevicesAPIService) CreateDeviceNoteExecute(r ApiCreateDeviceNoteRequest
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
-	parameterAddToHeaderOrQuery(localVarHeaderParams, "authorization", r.authorization, "simple", "")
+	if r.authorization != nil {
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "authorization", r.authorization, "simple", "")
+	}
 	// body params
 	localVarPostBody = r.deviceNote
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
@@ -520,19 +516,19 @@ func (a *DevicesAPIService) CreateDeviceNoteExecute(r ApiCreateDeviceNoteRequest
 type ApiCreateDeviceSwitchPortRangeRequest struct {
 	ctx             context.Context
 	ApiService      *DevicesAPIService
-	authorization   *string
 	deviceId        int64
 	switchPortRange *SwitchPortRange
-}
-
-func (r ApiCreateDeviceSwitchPortRangeRequest) Authorization(authorization string) ApiCreateDeviceSwitchPortRangeRequest {
-	r.authorization = &authorization
-	return r
+	authorization   *string
 }
 
 // Switch Port Range object that needs to be added to the portal
 func (r ApiCreateDeviceSwitchPortRangeRequest) SwitchPortRange(switchPortRange SwitchPortRange) ApiCreateDeviceSwitchPortRangeRequest {
 	r.switchPortRange = &switchPortRange
+	return r
+}
+
+func (r ApiCreateDeviceSwitchPortRangeRequest) Authorization(authorization string) ApiCreateDeviceSwitchPortRangeRequest {
+	r.authorization = &authorization
 	return r
 }
 
@@ -576,9 +572,6 @@ func (a *DevicesAPIService) CreateDeviceSwitchPortRangeExecute(r ApiCreateDevice
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
-	if r.authorization == nil {
-		return nil, reportError("authorization is required and must be specified")
-	}
 	if r.switchPortRange == nil {
 		return nil, reportError("switchPortRange is required and must be specified")
 	}
@@ -600,7 +593,9 @@ func (a *DevicesAPIService) CreateDeviceSwitchPortRangeExecute(r ApiCreateDevice
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
-	parameterAddToHeaderOrQuery(localVarHeaderParams, "authorization", r.authorization, "simple", "")
+	if r.authorization != nil {
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "authorization", r.authorization, "simple", "")
+	}
 	// body params
 	localVarPostBody = r.switchPortRange
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
@@ -645,8 +640,8 @@ func (a *DevicesAPIService) CreateDeviceSwitchPortRangeExecute(r ApiCreateDevice
 type ApiDeleteDeviceByIdRequest struct {
 	ctx           context.Context
 	ApiService    *DevicesAPIService
-	authorization *string
 	deviceId      int64
+	authorization *string
 }
 
 func (r ApiDeleteDeviceByIdRequest) Authorization(authorization string) ApiDeleteDeviceByIdRequest {
@@ -692,9 +687,6 @@ func (a *DevicesAPIService) DeleteDeviceByIdExecute(r ApiDeleteDeviceByIdRequest
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
-	if r.authorization == nil {
-		return nil, reportError("authorization is required and must be specified")
-	}
 
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
@@ -713,7 +705,9 @@ func (a *DevicesAPIService) DeleteDeviceByIdExecute(r ApiDeleteDeviceByIdRequest
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
-	parameterAddToHeaderOrQuery(localVarHeaderParams, "authorization", r.authorization, "simple", "")
+	if r.authorization != nil {
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "authorization", r.authorization, "simple", "")
+	}
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return nil, err
@@ -756,9 +750,9 @@ func (a *DevicesAPIService) DeleteDeviceByIdExecute(r ApiDeleteDeviceByIdRequest
 type ApiDeleteManagementURLByIdRequest struct {
 	ctx           context.Context
 	ApiService    *DevicesAPIService
-	authorization *string
 	deviceId      int64
 	murlId        int64
+	authorization *string
 }
 
 func (r ApiDeleteManagementURLByIdRequest) Authorization(authorization string) ApiDeleteManagementURLByIdRequest {
@@ -807,9 +801,6 @@ func (a *DevicesAPIService) DeleteManagementURLByIdExecute(r ApiDeleteManagement
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
-	if r.authorization == nil {
-		return nil, reportError("authorization is required and must be specified")
-	}
 
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
@@ -828,7 +819,9 @@ func (a *DevicesAPIService) DeleteManagementURLByIdExecute(r ApiDeleteManagement
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
-	parameterAddToHeaderOrQuery(localVarHeaderParams, "authorization", r.authorization, "simple", "")
+	if r.authorization != nil {
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "authorization", r.authorization, "simple", "")
+	}
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return nil, err
@@ -871,9 +864,9 @@ func (a *DevicesAPIService) DeleteManagementURLByIdExecute(r ApiDeleteManagement
 type ApiDeleteSwitchPortRangeByIdRequest struct {
 	ctx               context.Context
 	ApiService        *DevicesAPIService
-	authorization     *string
 	deviceId          int64
 	switchPortRangeId int64
+	authorization     *string
 }
 
 func (r ApiDeleteSwitchPortRangeByIdRequest) Authorization(authorization string) ApiDeleteSwitchPortRangeByIdRequest {
@@ -922,9 +915,6 @@ func (a *DevicesAPIService) DeleteSwitchPortRangeByIdExecute(r ApiDeleteSwitchPo
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
-	if r.authorization == nil {
-		return nil, reportError("authorization is required and must be specified")
-	}
 
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
@@ -943,7 +933,9 @@ func (a *DevicesAPIService) DeleteSwitchPortRangeByIdExecute(r ApiDeleteSwitchPo
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
-	parameterAddToHeaderOrQuery(localVarHeaderParams, "authorization", r.authorization, "simple", "")
+	if r.authorization != nil {
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "authorization", r.authorization, "simple", "")
+	}
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return nil, err
@@ -986,8 +978,8 @@ func (a *DevicesAPIService) DeleteSwitchPortRangeByIdExecute(r ApiDeleteSwitchPo
 type ApiGetConfigurationFilesByDeviceIdRequest struct {
 	ctx           context.Context
 	ApiService    *DevicesAPIService
-	authorization *string
 	deviceId      int64
+	authorization *string
 	orderBy       *[]string
 	limit         *int32
 	offset        *int32
@@ -1066,9 +1058,6 @@ func (a *DevicesAPIService) GetConfigurationFilesByDeviceIdExecute(r ApiGetConfi
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
-	if r.authorization == nil {
-		return localVarReturnValue, nil, reportError("authorization is required and must be specified")
-	}
 
 	if r.orderBy != nil {
 		t := *r.orderBy
@@ -1107,7 +1096,9 @@ func (a *DevicesAPIService) GetConfigurationFilesByDeviceIdExecute(r ApiGetConfi
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
-	parameterAddToHeaderOrQuery(localVarHeaderParams, "authorization", r.authorization, "simple", "")
+	if r.authorization != nil {
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "authorization", r.authorization, "simple", "")
+	}
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return localVarReturnValue, nil, err
@@ -1159,8 +1150,8 @@ func (a *DevicesAPIService) GetConfigurationFilesByDeviceIdExecute(r ApiGetConfi
 type ApiGetCredentialsByDeviceIdRequest struct {
 	ctx           context.Context
 	ApiService    *DevicesAPIService
-	authorization *string
 	deviceId      int64
+	authorization *string
 }
 
 func (r ApiGetCredentialsByDeviceIdRequest) Authorization(authorization string) ApiGetCredentialsByDeviceIdRequest {
@@ -1211,9 +1202,6 @@ func (a *DevicesAPIService) GetCredentialsByDeviceIdExecute(r ApiGetCredentialsB
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
-	if r.authorization == nil {
-		return localVarReturnValue, nil, reportError("authorization is required and must be specified")
-	}
 
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
@@ -1232,7 +1220,9 @@ func (a *DevicesAPIService) GetCredentialsByDeviceIdExecute(r ApiGetCredentialsB
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
-	parameterAddToHeaderOrQuery(localVarHeaderParams, "authorization", r.authorization, "simple", "")
+	if r.authorization != nil {
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "authorization", r.authorization, "simple", "")
+	}
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return localVarReturnValue, nil, err
@@ -1283,8 +1273,8 @@ func (a *DevicesAPIService) GetCredentialsByDeviceIdExecute(r ApiGetCredentialsB
 type ApiGetDeviceByIdRequest struct {
 	ctx           context.Context
 	ApiService    *DevicesAPIService
-	authorization *string
 	deviceId      int64
+	authorization *string
 }
 
 func (r ApiGetDeviceByIdRequest) Authorization(authorization string) ApiGetDeviceByIdRequest {
@@ -1335,9 +1325,6 @@ func (a *DevicesAPIService) GetDeviceByIdExecute(r ApiGetDeviceByIdRequest) (*De
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
-	if r.authorization == nil {
-		return localVarReturnValue, nil, reportError("authorization is required and must be specified")
-	}
 
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
@@ -1356,7 +1343,9 @@ func (a *DevicesAPIService) GetDeviceByIdExecute(r ApiGetDeviceByIdRequest) (*De
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
-	parameterAddToHeaderOrQuery(localVarHeaderParams, "authorization", r.authorization, "simple", "")
+	if r.authorization != nil {
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "authorization", r.authorization, "simple", "")
+	}
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return localVarReturnValue, nil, err
@@ -1659,9 +1648,6 @@ func (a *DevicesAPIService) GetDevicesExecute(r ApiGetDevicesRequest) (*DeviceDa
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
-	if r.authorization == nil {
-		return localVarReturnValue, nil, reportError("authorization is required and must be specified")
-	}
 
 	if r.name != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "name", r.name, "form", "")
@@ -1783,7 +1769,9 @@ func (a *DevicesAPIService) GetDevicesExecute(r ApiGetDevicesRequest) (*DeviceDa
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
-	parameterAddToHeaderOrQuery(localVarHeaderParams, "authorization", r.authorization, "simple", "")
+	if r.authorization != nil {
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "authorization", r.authorization, "simple", "")
+	}
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return localVarReturnValue, nil, err
@@ -1834,8 +1822,8 @@ func (a *DevicesAPIService) GetDevicesExecute(r ApiGetDevicesRequest) (*DeviceDa
 type ApiGetIpsByDeviceIdRequest struct {
 	ctx           context.Context
 	ApiService    *DevicesAPIService
-	authorization *string
 	deviceId      int64
+	authorization *string
 	ipId          *int32
 	limit         *int32
 	offset        *int32
@@ -1914,9 +1902,6 @@ func (a *DevicesAPIService) GetIpsByDeviceIdExecute(r ApiGetIpsByDeviceIdRequest
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
-	if r.authorization == nil {
-		return localVarReturnValue, nil, reportError("authorization is required and must be specified")
-	}
 
 	if r.ipId != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "ipId", r.ipId, "form", "")
@@ -1947,7 +1932,9 @@ func (a *DevicesAPIService) GetIpsByDeviceIdExecute(r ApiGetIpsByDeviceIdRequest
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
-	parameterAddToHeaderOrQuery(localVarHeaderParams, "authorization", r.authorization, "simple", "")
+	if r.authorization != nil {
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "authorization", r.authorization, "simple", "")
+	}
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return localVarReturnValue, nil, err
@@ -1999,8 +1986,8 @@ func (a *DevicesAPIService) GetIpsByDeviceIdExecute(r ApiGetIpsByDeviceIdRequest
 type ApiGetMUrlsByDeviceIdRequest struct {
 	ctx           context.Context
 	ApiService    *DevicesAPIService
-	authorization *string
 	deviceId      int64
+	authorization *string
 	murlId        *int32
 	limit         *int32
 	offset        *int32
@@ -2079,9 +2066,6 @@ func (a *DevicesAPIService) GetMUrlsByDeviceIdExecute(r ApiGetMUrlsByDeviceIdReq
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
-	if r.authorization == nil {
-		return localVarReturnValue, nil, reportError("authorization is required and must be specified")
-	}
 
 	if r.murlId != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "murlId", r.murlId, "form", "")
@@ -2112,7 +2096,9 @@ func (a *DevicesAPIService) GetMUrlsByDeviceIdExecute(r ApiGetMUrlsByDeviceIdReq
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
-	parameterAddToHeaderOrQuery(localVarHeaderParams, "authorization", r.authorization, "simple", "")
+	if r.authorization != nil {
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "authorization", r.authorization, "simple", "")
+	}
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return localVarReturnValue, nil, err
@@ -2164,8 +2150,8 @@ func (a *DevicesAPIService) GetMUrlsByDeviceIdExecute(r ApiGetMUrlsByDeviceIdReq
 type ApiGetNotesByDeviceIdRequest struct {
 	ctx           context.Context
 	ApiService    *DevicesAPIService
-	authorization *string
 	deviceId      int64
+	authorization *string
 	limit         *int32
 	offset        *int32
 	keyValue      *string
@@ -2237,9 +2223,6 @@ func (a *DevicesAPIService) GetNotesByDeviceIdExecute(r ApiGetNotesByDeviceIdReq
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
-	if r.authorization == nil {
-		return localVarReturnValue, nil, reportError("authorization is required and must be specified")
-	}
 
 	if r.limit != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "limit", r.limit, "form", "")
@@ -2267,7 +2250,9 @@ func (a *DevicesAPIService) GetNotesByDeviceIdExecute(r ApiGetNotesByDeviceIdReq
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
-	parameterAddToHeaderOrQuery(localVarHeaderParams, "authorization", r.authorization, "simple", "")
+	if r.authorization != nil {
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "authorization", r.authorization, "simple", "")
+	}
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return localVarReturnValue, nil, err
@@ -2319,8 +2304,8 @@ func (a *DevicesAPIService) GetNotesByDeviceIdExecute(r ApiGetNotesByDeviceIdReq
 type ApiGetSwitchPortRangesByDeviceIdRequest struct {
 	ctx               context.Context
 	ApiService        *DevicesAPIService
-	authorization     *string
 	deviceId          int64
+	authorization     *string
 	switchPortRangeId *int64
 	limit             *int32
 	offset            *int32
@@ -2399,9 +2384,6 @@ func (a *DevicesAPIService) GetSwitchPortRangesByDeviceIdExecute(r ApiGetSwitchP
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
-	if r.authorization == nil {
-		return localVarReturnValue, nil, reportError("authorization is required and must be specified")
-	}
 
 	if r.switchPortRangeId != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "switchPortRangeId", r.switchPortRangeId, "form", "")
@@ -2432,7 +2414,9 @@ func (a *DevicesAPIService) GetSwitchPortRangesByDeviceIdExecute(r ApiGetSwitchP
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
-	parameterAddToHeaderOrQuery(localVarHeaderParams, "authorization", r.authorization, "simple", "")
+	if r.authorization != nil {
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "authorization", r.authorization, "simple", "")
+	}
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return localVarReturnValue, nil, err
@@ -2484,19 +2468,19 @@ func (a *DevicesAPIService) GetSwitchPortRangesByDeviceIdExecute(r ApiGetSwitchP
 type ApiUpdateDeviceByIdRequest struct {
 	ctx           context.Context
 	ApiService    *DevicesAPIService
-	authorization *string
 	deviceId      int64
 	devicePatch   *DevicePatch
-}
-
-func (r ApiUpdateDeviceByIdRequest) Authorization(authorization string) ApiUpdateDeviceByIdRequest {
-	r.authorization = &authorization
-	return r
+	authorization *string
 }
 
 // Device fields that need to be updated to the portal
 func (r ApiUpdateDeviceByIdRequest) DevicePatch(devicePatch DevicePatch) ApiUpdateDeviceByIdRequest {
 	r.devicePatch = &devicePatch
+	return r
+}
+
+func (r ApiUpdateDeviceByIdRequest) Authorization(authorization string) ApiUpdateDeviceByIdRequest {
+	r.authorization = &authorization
 	return r
 }
 
@@ -2540,9 +2524,6 @@ func (a *DevicesAPIService) UpdateDeviceByIdExecute(r ApiUpdateDeviceByIdRequest
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
-	if r.authorization == nil {
-		return nil, reportError("authorization is required and must be specified")
-	}
 	if r.devicePatch == nil {
 		return nil, reportError("devicePatch is required and must be specified")
 	}
@@ -2564,7 +2545,9 @@ func (a *DevicesAPIService) UpdateDeviceByIdExecute(r ApiUpdateDeviceByIdRequest
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
-	parameterAddToHeaderOrQuery(localVarHeaderParams, "authorization", r.authorization, "simple", "")
+	if r.authorization != nil {
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "authorization", r.authorization, "simple", "")
+	}
 	// body params
 	localVarPostBody = r.devicePatch
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
@@ -2609,20 +2592,20 @@ func (a *DevicesAPIService) UpdateDeviceByIdExecute(r ApiUpdateDeviceByIdRequest
 type ApiUpdateDeviceIPByIdRequest struct {
 	ctx           context.Context
 	ApiService    *DevicesAPIService
-	authorization *string
 	deviceId      int64
 	ipId          int64
 	iPPatch       *IPPatch
-}
-
-func (r ApiUpdateDeviceIPByIdRequest) Authorization(authorization string) ApiUpdateDeviceIPByIdRequest {
-	r.authorization = &authorization
-	return r
+	authorization *string
 }
 
 // Device IP fields that need to be updated to the portal
 func (r ApiUpdateDeviceIPByIdRequest) IPPatch(iPPatch IPPatch) ApiUpdateDeviceIPByIdRequest {
 	r.iPPatch = &iPPatch
+	return r
+}
+
+func (r ApiUpdateDeviceIPByIdRequest) Authorization(authorization string) ApiUpdateDeviceIPByIdRequest {
+	r.authorization = &authorization
 	return r
 }
 
@@ -2669,9 +2652,6 @@ func (a *DevicesAPIService) UpdateDeviceIPByIdExecute(r ApiUpdateDeviceIPByIdReq
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
-	if r.authorization == nil {
-		return nil, reportError("authorization is required and must be specified")
-	}
 	if r.iPPatch == nil {
 		return nil, reportError("iPPatch is required and must be specified")
 	}
@@ -2693,7 +2673,9 @@ func (a *DevicesAPIService) UpdateDeviceIPByIdExecute(r ApiUpdateDeviceIPByIdReq
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
-	parameterAddToHeaderOrQuery(localVarHeaderParams, "authorization", r.authorization, "simple", "")
+	if r.authorization != nil {
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "authorization", r.authorization, "simple", "")
+	}
 	// body params
 	localVarPostBody = r.iPPatch
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
@@ -2738,20 +2720,20 @@ func (a *DevicesAPIService) UpdateDeviceIPByIdExecute(r ApiUpdateDeviceIPByIdReq
 type ApiUpdateDeviceManagementUrlByIdRequest struct {
 	ctx           context.Context
 	ApiService    *DevicesAPIService
-	authorization *string
 	deviceId      int64
 	murlId        int64
 	mUrl          *MUrl
-}
-
-func (r ApiUpdateDeviceManagementUrlByIdRequest) Authorization(authorization string) ApiUpdateDeviceManagementUrlByIdRequest {
-	r.authorization = &authorization
-	return r
+	authorization *string
 }
 
 // Device Management Url fields that need to be updated to the portal
 func (r ApiUpdateDeviceManagementUrlByIdRequest) MUrl(mUrl MUrl) ApiUpdateDeviceManagementUrlByIdRequest {
 	r.mUrl = &mUrl
+	return r
+}
+
+func (r ApiUpdateDeviceManagementUrlByIdRequest) Authorization(authorization string) ApiUpdateDeviceManagementUrlByIdRequest {
+	r.authorization = &authorization
 	return r
 }
 
@@ -2798,9 +2780,6 @@ func (a *DevicesAPIService) UpdateDeviceManagementUrlByIdExecute(r ApiUpdateDevi
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
-	if r.authorization == nil {
-		return nil, reportError("authorization is required and must be specified")
-	}
 	if r.mUrl == nil {
 		return nil, reportError("mUrl is required and must be specified")
 	}
@@ -2822,7 +2801,9 @@ func (a *DevicesAPIService) UpdateDeviceManagementUrlByIdExecute(r ApiUpdateDevi
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
-	parameterAddToHeaderOrQuery(localVarHeaderParams, "authorization", r.authorization, "simple", "")
+	if r.authorization != nil {
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "authorization", r.authorization, "simple", "")
+	}
 	// body params
 	localVarPostBody = r.mUrl
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
@@ -2867,20 +2848,20 @@ func (a *DevicesAPIService) UpdateDeviceManagementUrlByIdExecute(r ApiUpdateDevi
 type ApiUpdateDeviceNoteByIdRequest struct {
 	ctx           context.Context
 	ApiService    *DevicesAPIService
-	authorization *string
 	deviceId      int64
 	noteId        int64
 	deviceNote    *DeviceNote
-}
-
-func (r ApiUpdateDeviceNoteByIdRequest) Authorization(authorization string) ApiUpdateDeviceNoteByIdRequest {
-	r.authorization = &authorization
-	return r
+	authorization *string
 }
 
 // Device Note fields that need to be updated to the portal
 func (r ApiUpdateDeviceNoteByIdRequest) DeviceNote(deviceNote DeviceNote) ApiUpdateDeviceNoteByIdRequest {
 	r.deviceNote = &deviceNote
+	return r
+}
+
+func (r ApiUpdateDeviceNoteByIdRequest) Authorization(authorization string) ApiUpdateDeviceNoteByIdRequest {
+	r.authorization = &authorization
 	return r
 }
 
@@ -2927,9 +2908,6 @@ func (a *DevicesAPIService) UpdateDeviceNoteByIdExecute(r ApiUpdateDeviceNoteByI
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
-	if r.authorization == nil {
-		return nil, reportError("authorization is required and must be specified")
-	}
 	if r.deviceNote == nil {
 		return nil, reportError("deviceNote is required and must be specified")
 	}
@@ -2951,7 +2929,9 @@ func (a *DevicesAPIService) UpdateDeviceNoteByIdExecute(r ApiUpdateDeviceNoteByI
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
-	parameterAddToHeaderOrQuery(localVarHeaderParams, "authorization", r.authorization, "simple", "")
+	if r.authorization != nil {
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "authorization", r.authorization, "simple", "")
+	}
 	// body params
 	localVarPostBody = r.deviceNote
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
@@ -2996,21 +2976,21 @@ func (a *DevicesAPIService) UpdateDeviceNoteByIdExecute(r ApiUpdateDeviceNoteByI
 type ApiUpdateSwitchPortByIdRequest struct {
 	ctx               context.Context
 	ApiService        *DevicesAPIService
-	authorization     *string
 	deviceId          int64
 	switchPortRangeId int64
 	switchPortId      int64
 	switchPortPatch   *SwitchPortPatch
-}
-
-func (r ApiUpdateSwitchPortByIdRequest) Authorization(authorization string) ApiUpdateSwitchPortByIdRequest {
-	r.authorization = &authorization
-	return r
+	authorization     *string
 }
 
 // Switch port fields that need to be updated to the portal
 func (r ApiUpdateSwitchPortByIdRequest) SwitchPortPatch(switchPortPatch SwitchPortPatch) ApiUpdateSwitchPortByIdRequest {
 	r.switchPortPatch = &switchPortPatch
+	return r
+}
+
+func (r ApiUpdateSwitchPortByIdRequest) Authorization(authorization string) ApiUpdateSwitchPortByIdRequest {
+	r.authorization = &authorization
 	return r
 }
 
@@ -3060,9 +3040,6 @@ func (a *DevicesAPIService) UpdateSwitchPortByIdExecute(r ApiUpdateSwitchPortByI
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
-	if r.authorization == nil {
-		return nil, reportError("authorization is required and must be specified")
-	}
 	if r.switchPortPatch == nil {
 		return nil, reportError("switchPortPatch is required and must be specified")
 	}
@@ -3084,7 +3061,9 @@ func (a *DevicesAPIService) UpdateSwitchPortByIdExecute(r ApiUpdateSwitchPortByI
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
-	parameterAddToHeaderOrQuery(localVarHeaderParams, "authorization", r.authorization, "simple", "")
+	if r.authorization != nil {
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "authorization", r.authorization, "simple", "")
+	}
 	// body params
 	localVarPostBody = r.switchPortPatch
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
@@ -3129,20 +3108,20 @@ func (a *DevicesAPIService) UpdateSwitchPortByIdExecute(r ApiUpdateSwitchPortByI
 type ApiUpdateSwitchPortRangeByIdRequest struct {
 	ctx                  context.Context
 	ApiService           *DevicesAPIService
-	authorization        *string
 	deviceId             int64
 	switchPortRangeId    int64
 	switchPortRangePatch *SwitchPortRangePatch
-}
-
-func (r ApiUpdateSwitchPortRangeByIdRequest) Authorization(authorization string) ApiUpdateSwitchPortRangeByIdRequest {
-	r.authorization = &authorization
-	return r
+	authorization        *string
 }
 
 // Switch port range fields that need to be updated to the portal
 func (r ApiUpdateSwitchPortRangeByIdRequest) SwitchPortRangePatch(switchPortRangePatch SwitchPortRangePatch) ApiUpdateSwitchPortRangeByIdRequest {
 	r.switchPortRangePatch = &switchPortRangePatch
+	return r
+}
+
+func (r ApiUpdateSwitchPortRangeByIdRequest) Authorization(authorization string) ApiUpdateSwitchPortRangeByIdRequest {
+	r.authorization = &authorization
 	return r
 }
 
@@ -3189,9 +3168,6 @@ func (a *DevicesAPIService) UpdateSwitchPortRangeByIdExecute(r ApiUpdateSwitchPo
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
-	if r.authorization == nil {
-		return nil, reportError("authorization is required and must be specified")
-	}
 	if r.switchPortRangePatch == nil {
 		return nil, reportError("switchPortRangePatch is required and must be specified")
 	}
@@ -3213,7 +3189,9 @@ func (a *DevicesAPIService) UpdateSwitchPortRangeByIdExecute(r ApiUpdateSwitchPo
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
-	parameterAddToHeaderOrQuery(localVarHeaderParams, "authorization", r.authorization, "simple", "")
+	if r.authorization != nil {
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "authorization", r.authorization, "simple", "")
+	}
 	// body params
 	localVarPostBody = r.switchPortRangePatch
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
@@ -3258,20 +3236,20 @@ func (a *DevicesAPIService) UpdateSwitchPortRangeByIdExecute(r ApiUpdateSwitchPo
 type ApiUploadConfigurationToDeviceIdRequest struct {
 	ctx           context.Context
 	ApiService    *DevicesAPIService
-	authorization *string
 	deviceId      int64
 	file          *os.File
+	authorization *string
 	notes         *string
-}
-
-func (r ApiUploadConfigurationToDeviceIdRequest) Authorization(authorization string) ApiUploadConfigurationToDeviceIdRequest {
-	r.authorization = &authorization
-	return r
 }
 
 // The file to upload.
 func (r ApiUploadConfigurationToDeviceIdRequest) File(file *os.File) ApiUploadConfigurationToDeviceIdRequest {
 	r.file = file
+	return r
+}
+
+func (r ApiUploadConfigurationToDeviceIdRequest) Authorization(authorization string) ApiUploadConfigurationToDeviceIdRequest {
+	r.authorization = &authorization
 	return r
 }
 
@@ -3321,9 +3299,6 @@ func (a *DevicesAPIService) UploadConfigurationToDeviceIdExecute(r ApiUploadConf
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
-	if r.authorization == nil {
-		return nil, reportError("authorization is required and must be specified")
-	}
 	if r.file == nil {
 		return nil, reportError("file is required and must be specified")
 	}
@@ -3348,7 +3323,9 @@ func (a *DevicesAPIService) UploadConfigurationToDeviceIdExecute(r ApiUploadConf
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
-	parameterAddToHeaderOrQuery(localVarHeaderParams, "authorization", r.authorization, "simple", "")
+	if r.authorization != nil {
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "authorization", r.authorization, "simple", "")
+	}
 	var fileLocalVarFormFileName string
 	var fileLocalVarFileName string
 	var fileLocalVarFileBytes []byte

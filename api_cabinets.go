@@ -26,18 +26,18 @@ type CabinetsAPIService service
 type ApiCreateCabinetRequest struct {
 	ctx           context.Context
 	ApiService    *CabinetsAPIService
-	authorization *string
 	cabinet       *Cabinet
-}
-
-func (r ApiCreateCabinetRequest) Authorization(authorization string) ApiCreateCabinetRequest {
-	r.authorization = &authorization
-	return r
+	authorization *string
 }
 
 // Cabinet that needs to be added to the portal
 func (r ApiCreateCabinetRequest) Cabinet(cabinet Cabinet) ApiCreateCabinetRequest {
 	r.cabinet = &cabinet
+	return r
+}
+
+func (r ApiCreateCabinetRequest) Authorization(authorization string) ApiCreateCabinetRequest {
+	r.authorization = &authorization
 	return r
 }
 
@@ -78,9 +78,6 @@ func (a *CabinetsAPIService) CreateCabinetExecute(r ApiCreateCabinetRequest) (*h
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
-	if r.authorization == nil {
-		return nil, reportError("authorization is required and must be specified")
-	}
 	if r.cabinet == nil {
 		return nil, reportError("cabinet is required and must be specified")
 	}
@@ -102,7 +99,9 @@ func (a *CabinetsAPIService) CreateCabinetExecute(r ApiCreateCabinetRequest) (*h
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
-	parameterAddToHeaderOrQuery(localVarHeaderParams, "authorization", r.authorization, "simple", "")
+	if r.authorization != nil {
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "authorization", r.authorization, "simple", "")
+	}
 	// body params
 	localVarPostBody = r.cabinet
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
@@ -146,8 +145,8 @@ func (a *CabinetsAPIService) CreateCabinetExecute(r ApiCreateCabinetRequest) (*h
 type ApiDeleteCabinetByIdRequest struct {
 	ctx           context.Context
 	ApiService    *CabinetsAPIService
-	authorization *string
 	cabinetId     int64
+	authorization *string
 }
 
 func (r ApiDeleteCabinetByIdRequest) Authorization(authorization string) ApiDeleteCabinetByIdRequest {
@@ -193,9 +192,6 @@ func (a *CabinetsAPIService) DeleteCabinetByIdExecute(r ApiDeleteCabinetByIdRequ
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
-	if r.authorization == nil {
-		return nil, reportError("authorization is required and must be specified")
-	}
 
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
@@ -214,7 +210,9 @@ func (a *CabinetsAPIService) DeleteCabinetByIdExecute(r ApiDeleteCabinetByIdRequ
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
-	parameterAddToHeaderOrQuery(localVarHeaderParams, "authorization", r.authorization, "simple", "")
+	if r.authorization != nil {
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "authorization", r.authorization, "simple", "")
+	}
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return nil, err
@@ -257,8 +255,8 @@ func (a *CabinetsAPIService) DeleteCabinetByIdExecute(r ApiDeleteCabinetByIdRequ
 type ApiGetCabinetByIdRequest struct {
 	ctx           context.Context
 	ApiService    *CabinetsAPIService
-	authorization *string
 	cabinetId     int64
+	authorization *string
 }
 
 func (r ApiGetCabinetByIdRequest) Authorization(authorization string) ApiGetCabinetByIdRequest {
@@ -309,9 +307,6 @@ func (a *CabinetsAPIService) GetCabinetByIdExecute(r ApiGetCabinetByIdRequest) (
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
-	if r.authorization == nil {
-		return localVarReturnValue, nil, reportError("authorization is required and must be specified")
-	}
 
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
@@ -330,7 +325,9 @@ func (a *CabinetsAPIService) GetCabinetByIdExecute(r ApiGetCabinetByIdRequest) (
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
-	parameterAddToHeaderOrQuery(localVarHeaderParams, "authorization", r.authorization, "simple", "")
+	if r.authorization != nil {
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "authorization", r.authorization, "simple", "")
+	}
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return localVarReturnValue, nil, err
@@ -563,9 +560,6 @@ func (a *CabinetsAPIService) GetCabinetsExecute(r ApiGetCabinetsRequest) (*Cabin
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
-	if r.authorization == nil {
-		return localVarReturnValue, nil, reportError("authorization is required and must be specified")
-	}
 
 	if r.name != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "name", r.name, "form", "")
@@ -649,7 +643,9 @@ func (a *CabinetsAPIService) GetCabinetsExecute(r ApiGetCabinetsRequest) (*Cabin
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
-	parameterAddToHeaderOrQuery(localVarHeaderParams, "authorization", r.authorization, "simple", "")
+	if r.authorization != nil {
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "authorization", r.authorization, "simple", "")
+	}
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return localVarReturnValue, nil, err
@@ -700,19 +696,19 @@ func (a *CabinetsAPIService) GetCabinetsExecute(r ApiGetCabinetsRequest) (*Cabin
 type ApiUpdateCabinetByIdRequest struct {
 	ctx           context.Context
 	ApiService    *CabinetsAPIService
-	authorization *string
 	cabinetId     int64
 	cabinet       *Cabinet
-}
-
-func (r ApiUpdateCabinetByIdRequest) Authorization(authorization string) ApiUpdateCabinetByIdRequest {
-	r.authorization = &authorization
-	return r
+	authorization *string
 }
 
 // Cabinet fields that need to be updated to the portal
 func (r ApiUpdateCabinetByIdRequest) Cabinet(cabinet Cabinet) ApiUpdateCabinetByIdRequest {
 	r.cabinet = &cabinet
+	return r
+}
+
+func (r ApiUpdateCabinetByIdRequest) Authorization(authorization string) ApiUpdateCabinetByIdRequest {
+	r.authorization = &authorization
 	return r
 }
 
@@ -756,9 +752,6 @@ func (a *CabinetsAPIService) UpdateCabinetByIdExecute(r ApiUpdateCabinetByIdRequ
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
-	if r.authorization == nil {
-		return nil, reportError("authorization is required and must be specified")
-	}
 	if r.cabinet == nil {
 		return nil, reportError("cabinet is required and must be specified")
 	}
@@ -780,7 +773,9 @@ func (a *CabinetsAPIService) UpdateCabinetByIdExecute(r ApiUpdateCabinetByIdRequ
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
-	parameterAddToHeaderOrQuery(localVarHeaderParams, "authorization", r.authorization, "simple", "")
+	if r.authorization != nil {
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "authorization", r.authorization, "simple", "")
+	}
 	// body params
 	localVarPostBody = r.cabinet
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)

@@ -27,18 +27,18 @@ type ContactsAPIService service
 type ApiCreateContactRequest struct {
 	ctx           context.Context
 	ApiService    *ContactsAPIService
-	authorization *string
 	contact       *Contact
-}
-
-func (r ApiCreateContactRequest) Authorization(authorization string) ApiCreateContactRequest {
-	r.authorization = &authorization
-	return r
+	authorization *string
 }
 
 // Contact that needs to be added to the portal
 func (r ApiCreateContactRequest) Contact(contact Contact) ApiCreateContactRequest {
 	r.contact = &contact
+	return r
+}
+
+func (r ApiCreateContactRequest) Authorization(authorization string) ApiCreateContactRequest {
+	r.authorization = &authorization
 	return r
 }
 
@@ -79,9 +79,6 @@ func (a *ContactsAPIService) CreateContactExecute(r ApiCreateContactRequest) (*h
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
-	if r.authorization == nil {
-		return nil, reportError("authorization is required and must be specified")
-	}
 	if r.contact == nil {
 		return nil, reportError("contact is required and must be specified")
 	}
@@ -103,7 +100,9 @@ func (a *ContactsAPIService) CreateContactExecute(r ApiCreateContactRequest) (*h
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
-	parameterAddToHeaderOrQuery(localVarHeaderParams, "authorization", r.authorization, "simple", "")
+	if r.authorization != nil {
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "authorization", r.authorization, "simple", "")
+	}
 	// body params
 	localVarPostBody = r.contact
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
@@ -147,8 +146,8 @@ func (a *ContactsAPIService) CreateContactExecute(r ApiCreateContactRequest) (*h
 type ApiDeleteContactByIdRequest struct {
 	ctx           context.Context
 	ApiService    *ContactsAPIService
-	authorization *string
 	contactId     int64
+	authorization *string
 }
 
 func (r ApiDeleteContactByIdRequest) Authorization(authorization string) ApiDeleteContactByIdRequest {
@@ -194,9 +193,6 @@ func (a *ContactsAPIService) DeleteContactByIdExecute(r ApiDeleteContactByIdRequ
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
-	if r.authorization == nil {
-		return nil, reportError("authorization is required and must be specified")
-	}
 
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
@@ -215,7 +211,9 @@ func (a *ContactsAPIService) DeleteContactByIdExecute(r ApiDeleteContactByIdRequ
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
-	parameterAddToHeaderOrQuery(localVarHeaderParams, "authorization", r.authorization, "simple", "")
+	if r.authorization != nil {
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "authorization", r.authorization, "simple", "")
+	}
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return nil, err
@@ -258,8 +256,8 @@ func (a *ContactsAPIService) DeleteContactByIdExecute(r ApiDeleteContactByIdRequ
 type ApiGetContactByIdRequest struct {
 	ctx           context.Context
 	ApiService    *ContactsAPIService
-	authorization *string
 	contactId     int64
+	authorization *string
 }
 
 func (r ApiGetContactByIdRequest) Authorization(authorization string) ApiGetContactByIdRequest {
@@ -310,9 +308,6 @@ func (a *ContactsAPIService) GetContactByIdExecute(r ApiGetContactByIdRequest) (
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
-	if r.authorization == nil {
-		return localVarReturnValue, nil, reportError("authorization is required and must be specified")
-	}
 
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
@@ -331,7 +326,9 @@ func (a *ContactsAPIService) GetContactByIdExecute(r ApiGetContactByIdRequest) (
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
-	parameterAddToHeaderOrQuery(localVarHeaderParams, "authorization", r.authorization, "simple", "")
+	if r.authorization != nil {
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "authorization", r.authorization, "simple", "")
+	}
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return localVarReturnValue, nil, err
@@ -655,9 +652,6 @@ func (a *ContactsAPIService) GetContactsExecute(r ApiGetContactsRequest) (*Conta
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
-	if r.authorization == nil {
-		return localVarReturnValue, nil, reportError("authorization is required and must be specified")
-	}
 
 	if r.name != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "name", r.name, "form", "")
@@ -788,7 +782,9 @@ func (a *ContactsAPIService) GetContactsExecute(r ApiGetContactsRequest) (*Conta
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
-	parameterAddToHeaderOrQuery(localVarHeaderParams, "authorization", r.authorization, "simple", "")
+	if r.authorization != nil {
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "authorization", r.authorization, "simple", "")
+	}
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return localVarReturnValue, nil, err
@@ -839,19 +835,19 @@ func (a *ContactsAPIService) GetContactsExecute(r ApiGetContactsRequest) (*Conta
 type ApiUpdateContactByIdRequest struct {
 	ctx           context.Context
 	ApiService    *ContactsAPIService
-	authorization *string
 	contactId     int64
 	contact       *Contact
-}
-
-func (r ApiUpdateContactByIdRequest) Authorization(authorization string) ApiUpdateContactByIdRequest {
-	r.authorization = &authorization
-	return r
+	authorization *string
 }
 
 // Contact fields that needs to be updated to the portal
 func (r ApiUpdateContactByIdRequest) Contact(contact Contact) ApiUpdateContactByIdRequest {
 	r.contact = &contact
+	return r
+}
+
+func (r ApiUpdateContactByIdRequest) Authorization(authorization string) ApiUpdateContactByIdRequest {
+	r.authorization = &authorization
 	return r
 }
 
@@ -895,9 +891,6 @@ func (a *ContactsAPIService) UpdateContactByIdExecute(r ApiUpdateContactByIdRequ
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
-	if r.authorization == nil {
-		return nil, reportError("authorization is required and must be specified")
-	}
 	if r.contact == nil {
 		return nil, reportError("contact is required and must be specified")
 	}
@@ -919,7 +912,9 @@ func (a *ContactsAPIService) UpdateContactByIdExecute(r ApiUpdateContactByIdRequ
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
-	parameterAddToHeaderOrQuery(localVarHeaderParams, "authorization", r.authorization, "simple", "")
+	if r.authorization != nil {
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "authorization", r.authorization, "simple", "")
+	}
 	// body params
 	localVarPostBody = r.contact
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
@@ -964,19 +959,19 @@ func (a *ContactsAPIService) UpdateContactByIdExecute(r ApiUpdateContactByIdRequ
 type ApiUploadFileToContactIdRequest struct {
 	ctx           context.Context
 	ApiService    *ContactsAPIService
-	authorization *string
 	contactId     int64
 	file          *os.File
-}
-
-func (r ApiUploadFileToContactIdRequest) Authorization(authorization string) ApiUploadFileToContactIdRequest {
-	r.authorization = &authorization
-	return r
+	authorization *string
 }
 
 // The file to upload.
 func (r ApiUploadFileToContactIdRequest) File(file *os.File) ApiUploadFileToContactIdRequest {
 	r.file = file
+	return r
+}
+
+func (r ApiUploadFileToContactIdRequest) Authorization(authorization string) ApiUploadFileToContactIdRequest {
+	r.authorization = &authorization
 	return r
 }
 
@@ -1020,9 +1015,6 @@ func (a *ContactsAPIService) UploadFileToContactIdExecute(r ApiUploadFileToConta
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
-	if r.authorization == nil {
-		return nil, reportError("authorization is required and must be specified")
-	}
 	if r.file == nil {
 		return nil, reportError("file is required and must be specified")
 	}
@@ -1044,7 +1036,9 @@ func (a *ContactsAPIService) UploadFileToContactIdExecute(r ApiUploadFileToConta
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
-	parameterAddToHeaderOrQuery(localVarHeaderParams, "authorization", r.authorization, "simple", "")
+	if r.authorization != nil {
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "authorization", r.authorization, "simple", "")
+	}
 	var fileLocalVarFormFileName string
 	var fileLocalVarFileName string
 	var fileLocalVarFileBytes []byte

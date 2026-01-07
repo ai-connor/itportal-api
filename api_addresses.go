@@ -25,19 +25,19 @@ type AddressesAPIService service
 type ApiCreateAddressRequest struct {
 	ctx           context.Context
 	ApiService    *AddressesAPIService
-	authorization *string
 	companyId     int64
 	address       *Address
-}
-
-func (r ApiCreateAddressRequest) Authorization(authorization string) ApiCreateAddressRequest {
-	r.authorization = &authorization
-	return r
+	authorization *string
 }
 
 // Address that needs to be added to the Portal company
 func (r ApiCreateAddressRequest) Address(address Address) ApiCreateAddressRequest {
 	r.address = &address
+	return r
+}
+
+func (r ApiCreateAddressRequest) Authorization(authorization string) ApiCreateAddressRequest {
+	r.authorization = &authorization
 	return r
 }
 
@@ -81,9 +81,6 @@ func (a *AddressesAPIService) CreateAddressExecute(r ApiCreateAddressRequest) (*
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
-	if r.authorization == nil {
-		return nil, reportError("authorization is required and must be specified")
-	}
 	if r.address == nil {
 		return nil, reportError("address is required and must be specified")
 	}
@@ -105,7 +102,9 @@ func (a *AddressesAPIService) CreateAddressExecute(r ApiCreateAddressRequest) (*
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
-	parameterAddToHeaderOrQuery(localVarHeaderParams, "authorization", r.authorization, "simple", "")
+	if r.authorization != nil {
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "authorization", r.authorization, "simple", "")
+	}
 	// body params
 	localVarPostBody = r.address
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
@@ -149,8 +148,8 @@ func (a *AddressesAPIService) CreateAddressExecute(r ApiCreateAddressRequest) (*
 type ApiDeleteAddressByIdRequest struct {
 	ctx           context.Context
 	ApiService    *AddressesAPIService
-	authorization *string
 	addressId     int64
+	authorization *string
 }
 
 func (r ApiDeleteAddressByIdRequest) Authorization(authorization string) ApiDeleteAddressByIdRequest {
@@ -196,9 +195,6 @@ func (a *AddressesAPIService) DeleteAddressByIdExecute(r ApiDeleteAddressByIdReq
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
-	if r.authorization == nil {
-		return nil, reportError("authorization is required and must be specified")
-	}
 
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
@@ -217,7 +213,9 @@ func (a *AddressesAPIService) DeleteAddressByIdExecute(r ApiDeleteAddressByIdReq
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
-	parameterAddToHeaderOrQuery(localVarHeaderParams, "authorization", r.authorization, "simple", "")
+	if r.authorization != nil {
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "authorization", r.authorization, "simple", "")
+	}
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return nil, err
@@ -260,8 +258,8 @@ func (a *AddressesAPIService) DeleteAddressByIdExecute(r ApiDeleteAddressByIdReq
 type ApiGetAddressByIdRequest struct {
 	ctx           context.Context
 	ApiService    *AddressesAPIService
-	authorization *string
 	addressId     int64
+	authorization *string
 }
 
 func (r ApiGetAddressByIdRequest) Authorization(authorization string) ApiGetAddressByIdRequest {
@@ -312,9 +310,6 @@ func (a *AddressesAPIService) GetAddressByIdExecute(r ApiGetAddressByIdRequest) 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
-	if r.authorization == nil {
-		return localVarReturnValue, nil, reportError("authorization is required and must be specified")
-	}
 
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
@@ -333,7 +328,9 @@ func (a *AddressesAPIService) GetAddressByIdExecute(r ApiGetAddressByIdRequest) 
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
-	parameterAddToHeaderOrQuery(localVarHeaderParams, "authorization", r.authorization, "simple", "")
+	if r.authorization != nil {
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "authorization", r.authorization, "simple", "")
+	}
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return localVarReturnValue, nil, err
@@ -454,9 +451,6 @@ func (a *AddressesAPIService) GetAddressesExecute(r ApiGetAddressesRequest) (*Ad
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
-	if r.authorization == nil {
-		return localVarReturnValue, nil, reportError("authorization is required and must be specified")
-	}
 
 	if r.limit != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "limit", r.limit, "form", "")
@@ -484,7 +478,9 @@ func (a *AddressesAPIService) GetAddressesExecute(r ApiGetAddressesRequest) (*Ad
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
-	parameterAddToHeaderOrQuery(localVarHeaderParams, "authorization", r.authorization, "simple", "")
+	if r.authorization != nil {
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "authorization", r.authorization, "simple", "")
+	}
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return localVarReturnValue, nil, err
@@ -535,19 +531,19 @@ func (a *AddressesAPIService) GetAddressesExecute(r ApiGetAddressesRequest) (*Ad
 type ApiUpdateAddressByIdRequest struct {
 	ctx           context.Context
 	ApiService    *AddressesAPIService
-	authorization *string
 	addressId     int64
 	address       *Address
-}
-
-func (r ApiUpdateAddressByIdRequest) Authorization(authorization string) ApiUpdateAddressByIdRequest {
-	r.authorization = &authorization
-	return r
+	authorization *string
 }
 
 // Address fields that need to be updated to the portal
 func (r ApiUpdateAddressByIdRequest) Address(address Address) ApiUpdateAddressByIdRequest {
 	r.address = &address
+	return r
+}
+
+func (r ApiUpdateAddressByIdRequest) Authorization(authorization string) ApiUpdateAddressByIdRequest {
+	r.authorization = &authorization
 	return r
 }
 
@@ -591,9 +587,6 @@ func (a *AddressesAPIService) UpdateAddressByIdExecute(r ApiUpdateAddressByIdReq
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
-	if r.authorization == nil {
-		return nil, reportError("authorization is required and must be specified")
-	}
 	if r.address == nil {
 		return nil, reportError("address is required and must be specified")
 	}
@@ -615,7 +608,9 @@ func (a *AddressesAPIService) UpdateAddressByIdExecute(r ApiUpdateAddressByIdReq
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
-	parameterAddToHeaderOrQuery(localVarHeaderParams, "authorization", r.authorization, "simple", "")
+	if r.authorization != nil {
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "authorization", r.authorization, "simple", "")
+	}
 	// body params
 	localVarPostBody = r.address
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)

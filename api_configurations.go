@@ -26,18 +26,18 @@ type ConfigurationsAPIService service
 type ApiCreateConfigurationRequest struct {
 	ctx           context.Context
 	ApiService    *ConfigurationsAPIService
-	authorization *string
 	configuration *Configuration
-}
-
-func (r ApiCreateConfigurationRequest) Authorization(authorization string) ApiCreateConfigurationRequest {
-	r.authorization = &authorization
-	return r
+	authorization *string
 }
 
 // Configuration that needs to be added to the portal
 func (r ApiCreateConfigurationRequest) Configuration(configuration Configuration) ApiCreateConfigurationRequest {
 	r.configuration = &configuration
+	return r
+}
+
+func (r ApiCreateConfigurationRequest) Authorization(authorization string) ApiCreateConfigurationRequest {
+	r.authorization = &authorization
 	return r
 }
 
@@ -78,9 +78,6 @@ func (a *ConfigurationsAPIService) CreateConfigurationExecute(r ApiCreateConfigu
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
-	if r.authorization == nil {
-		return nil, reportError("authorization is required and must be specified")
-	}
 	if r.configuration == nil {
 		return nil, reportError("configuration is required and must be specified")
 	}
@@ -102,7 +99,9 @@ func (a *ConfigurationsAPIService) CreateConfigurationExecute(r ApiCreateConfigu
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
-	parameterAddToHeaderOrQuery(localVarHeaderParams, "authorization", r.authorization, "simple", "")
+	if r.authorization != nil {
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "authorization", r.authorization, "simple", "")
+	}
 	// body params
 	localVarPostBody = r.configuration
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
@@ -146,8 +145,8 @@ func (a *ConfigurationsAPIService) CreateConfigurationExecute(r ApiCreateConfigu
 type ApiDeleteConfigurationByIdRequest struct {
 	ctx             context.Context
 	ApiService      *ConfigurationsAPIService
-	authorization   *string
 	configurationId int64
+	authorization   *string
 }
 
 func (r ApiDeleteConfigurationByIdRequest) Authorization(authorization string) ApiDeleteConfigurationByIdRequest {
@@ -193,9 +192,6 @@ func (a *ConfigurationsAPIService) DeleteConfigurationByIdExecute(r ApiDeleteCon
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
-	if r.authorization == nil {
-		return nil, reportError("authorization is required and must be specified")
-	}
 
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
@@ -214,7 +210,9 @@ func (a *ConfigurationsAPIService) DeleteConfigurationByIdExecute(r ApiDeleteCon
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
-	parameterAddToHeaderOrQuery(localVarHeaderParams, "authorization", r.authorization, "simple", "")
+	if r.authorization != nil {
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "authorization", r.authorization, "simple", "")
+	}
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return nil, err
@@ -257,8 +255,8 @@ func (a *ConfigurationsAPIService) DeleteConfigurationByIdExecute(r ApiDeleteCon
 type ApiGetConfigurationByIdRequest struct {
 	ctx             context.Context
 	ApiService      *ConfigurationsAPIService
-	authorization   *string
 	configurationId int64
+	authorization   *string
 }
 
 func (r ApiGetConfigurationByIdRequest) Authorization(authorization string) ApiGetConfigurationByIdRequest {
@@ -309,9 +307,6 @@ func (a *ConfigurationsAPIService) GetConfigurationByIdExecute(r ApiGetConfigura
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
-	if r.authorization == nil {
-		return localVarReturnValue, nil, reportError("authorization is required and must be specified")
-	}
 
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
@@ -330,7 +325,9 @@ func (a *ConfigurationsAPIService) GetConfigurationByIdExecute(r ApiGetConfigura
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
-	parameterAddToHeaderOrQuery(localVarHeaderParams, "authorization", r.authorization, "simple", "")
+	if r.authorization != nil {
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "authorization", r.authorization, "simple", "")
+	}
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return localVarReturnValue, nil, err
@@ -556,9 +553,6 @@ func (a *ConfigurationsAPIService) GetConfigurationsExecute(r ApiGetConfiguratio
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
-	if r.authorization == nil {
-		return localVarReturnValue, nil, reportError("authorization is required and must be specified")
-	}
 
 	if r.name != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "name", r.name, "form", "")
@@ -647,7 +641,9 @@ func (a *ConfigurationsAPIService) GetConfigurationsExecute(r ApiGetConfiguratio
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
-	parameterAddToHeaderOrQuery(localVarHeaderParams, "authorization", r.authorization, "simple", "")
+	if r.authorization != nil {
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "authorization", r.authorization, "simple", "")
+	}
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return localVarReturnValue, nil, err
@@ -698,19 +694,19 @@ func (a *ConfigurationsAPIService) GetConfigurationsExecute(r ApiGetConfiguratio
 type ApiUpdateConfigurationByIdRequest struct {
 	ctx             context.Context
 	ApiService      *ConfigurationsAPIService
-	authorization   *string
 	configurationId int64
 	configuration   *Configuration
-}
-
-func (r ApiUpdateConfigurationByIdRequest) Authorization(authorization string) ApiUpdateConfigurationByIdRequest {
-	r.authorization = &authorization
-	return r
+	authorization   *string
 }
 
 // Configuration fields that need to be updated to the portal
 func (r ApiUpdateConfigurationByIdRequest) Configuration(configuration Configuration) ApiUpdateConfigurationByIdRequest {
 	r.configuration = &configuration
+	return r
+}
+
+func (r ApiUpdateConfigurationByIdRequest) Authorization(authorization string) ApiUpdateConfigurationByIdRequest {
+	r.authorization = &authorization
 	return r
 }
 
@@ -754,9 +750,6 @@ func (a *ConfigurationsAPIService) UpdateConfigurationByIdExecute(r ApiUpdateCon
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
-	if r.authorization == nil {
-		return nil, reportError("authorization is required and must be specified")
-	}
 	if r.configuration == nil {
 		return nil, reportError("configuration is required and must be specified")
 	}
@@ -778,7 +771,9 @@ func (a *ConfigurationsAPIService) UpdateConfigurationByIdExecute(r ApiUpdateCon
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
-	parameterAddToHeaderOrQuery(localVarHeaderParams, "authorization", r.authorization, "simple", "")
+	if r.authorization != nil {
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "authorization", r.authorization, "simple", "")
+	}
 	// body params
 	localVarPostBody = r.configuration
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)

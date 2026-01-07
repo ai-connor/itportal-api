@@ -27,18 +27,18 @@ type AgreementsAPIService service
 type ApiCreateAgreementRequest struct {
 	ctx           context.Context
 	ApiService    *AgreementsAPIService
-	authorization *string
 	agreement     *Agreement
-}
-
-func (r ApiCreateAgreementRequest) Authorization(authorization string) ApiCreateAgreementRequest {
-	r.authorization = &authorization
-	return r
+	authorization *string
 }
 
 // Agreement that needs to be added to the portal
 func (r ApiCreateAgreementRequest) Agreement(agreement Agreement) ApiCreateAgreementRequest {
 	r.agreement = &agreement
+	return r
+}
+
+func (r ApiCreateAgreementRequest) Authorization(authorization string) ApiCreateAgreementRequest {
+	r.authorization = &authorization
 	return r
 }
 
@@ -79,9 +79,6 @@ func (a *AgreementsAPIService) CreateAgreementExecute(r ApiCreateAgreementReques
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
-	if r.authorization == nil {
-		return nil, reportError("authorization is required and must be specified")
-	}
 	if r.agreement == nil {
 		return nil, reportError("agreement is required and must be specified")
 	}
@@ -103,7 +100,9 @@ func (a *AgreementsAPIService) CreateAgreementExecute(r ApiCreateAgreementReques
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
-	parameterAddToHeaderOrQuery(localVarHeaderParams, "authorization", r.authorization, "simple", "")
+	if r.authorization != nil {
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "authorization", r.authorization, "simple", "")
+	}
 	// body params
 	localVarPostBody = r.agreement
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
@@ -147,8 +146,8 @@ func (a *AgreementsAPIService) CreateAgreementExecute(r ApiCreateAgreementReques
 type ApiDeleteAgreementByIdRequest struct {
 	ctx           context.Context
 	ApiService    *AgreementsAPIService
-	authorization *string
 	agreementId   int64
+	authorization *string
 }
 
 func (r ApiDeleteAgreementByIdRequest) Authorization(authorization string) ApiDeleteAgreementByIdRequest {
@@ -194,9 +193,6 @@ func (a *AgreementsAPIService) DeleteAgreementByIdExecute(r ApiDeleteAgreementBy
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
-	if r.authorization == nil {
-		return nil, reportError("authorization is required and must be specified")
-	}
 
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
@@ -215,7 +211,9 @@ func (a *AgreementsAPIService) DeleteAgreementByIdExecute(r ApiDeleteAgreementBy
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
-	parameterAddToHeaderOrQuery(localVarHeaderParams, "authorization", r.authorization, "simple", "")
+	if r.authorization != nil {
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "authorization", r.authorization, "simple", "")
+	}
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return nil, err
@@ -258,8 +256,8 @@ func (a *AgreementsAPIService) DeleteAgreementByIdExecute(r ApiDeleteAgreementBy
 type ApiGetAgreementByIdRequest struct {
 	ctx           context.Context
 	ApiService    *AgreementsAPIService
-	authorization *string
 	agreementId   int64
+	authorization *string
 }
 
 func (r ApiGetAgreementByIdRequest) Authorization(authorization string) ApiGetAgreementByIdRequest {
@@ -310,9 +308,6 @@ func (a *AgreementsAPIService) GetAgreementByIdExecute(r ApiGetAgreementByIdRequ
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
-	if r.authorization == nil {
-		return localVarReturnValue, nil, reportError("authorization is required and must be specified")
-	}
 
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
@@ -331,7 +326,9 @@ func (a *AgreementsAPIService) GetAgreementByIdExecute(r ApiGetAgreementByIdRequ
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
-	parameterAddToHeaderOrQuery(localVarHeaderParams, "authorization", r.authorization, "simple", "")
+	if r.authorization != nil {
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "authorization", r.authorization, "simple", "")
+	}
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return localVarReturnValue, nil, err
@@ -606,9 +603,6 @@ func (a *AgreementsAPIService) GetAgreementsExecute(r ApiGetAgreementsRequest) (
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
-	if r.authorization == nil {
-		return localVarReturnValue, nil, reportError("authorization is required and must be specified")
-	}
 
 	if r.name != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "name", r.name, "form", "")
@@ -718,7 +712,9 @@ func (a *AgreementsAPIService) GetAgreementsExecute(r ApiGetAgreementsRequest) (
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
-	parameterAddToHeaderOrQuery(localVarHeaderParams, "authorization", r.authorization, "simple", "")
+	if r.authorization != nil {
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "authorization", r.authorization, "simple", "")
+	}
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return localVarReturnValue, nil, err
@@ -769,19 +765,19 @@ func (a *AgreementsAPIService) GetAgreementsExecute(r ApiGetAgreementsRequest) (
 type ApiUpdateAgreementByIdRequest struct {
 	ctx           context.Context
 	ApiService    *AgreementsAPIService
-	authorization *string
 	agreementId   int64
 	agreement     *Agreement
-}
-
-func (r ApiUpdateAgreementByIdRequest) Authorization(authorization string) ApiUpdateAgreementByIdRequest {
-	r.authorization = &authorization
-	return r
+	authorization *string
 }
 
 // Agreement fields that need to be updated to the portal
 func (r ApiUpdateAgreementByIdRequest) Agreement(agreement Agreement) ApiUpdateAgreementByIdRequest {
 	r.agreement = &agreement
+	return r
+}
+
+func (r ApiUpdateAgreementByIdRequest) Authorization(authorization string) ApiUpdateAgreementByIdRequest {
+	r.authorization = &authorization
 	return r
 }
 
@@ -825,9 +821,6 @@ func (a *AgreementsAPIService) UpdateAgreementByIdExecute(r ApiUpdateAgreementBy
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
-	if r.authorization == nil {
-		return nil, reportError("authorization is required and must be specified")
-	}
 	if r.agreement == nil {
 		return nil, reportError("agreement is required and must be specified")
 	}
@@ -849,7 +842,9 @@ func (a *AgreementsAPIService) UpdateAgreementByIdExecute(r ApiUpdateAgreementBy
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
-	parameterAddToHeaderOrQuery(localVarHeaderParams, "authorization", r.authorization, "simple", "")
+	if r.authorization != nil {
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "authorization", r.authorization, "simple", "")
+	}
 	// body params
 	localVarPostBody = r.agreement
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
@@ -894,19 +889,19 @@ func (a *AgreementsAPIService) UpdateAgreementByIdExecute(r ApiUpdateAgreementBy
 type ApiUploadFileToAgreementIdRequest struct {
 	ctx           context.Context
 	ApiService    *AgreementsAPIService
-	authorization *string
 	agreementId   int64
 	file          *os.File
-}
-
-func (r ApiUploadFileToAgreementIdRequest) Authorization(authorization string) ApiUploadFileToAgreementIdRequest {
-	r.authorization = &authorization
-	return r
+	authorization *string
 }
 
 // The file to upload.
 func (r ApiUploadFileToAgreementIdRequest) File(file *os.File) ApiUploadFileToAgreementIdRequest {
 	r.file = file
+	return r
+}
+
+func (r ApiUploadFileToAgreementIdRequest) Authorization(authorization string) ApiUploadFileToAgreementIdRequest {
+	r.authorization = &authorization
 	return r
 }
 
@@ -950,9 +945,6 @@ func (a *AgreementsAPIService) UploadFileToAgreementIdExecute(r ApiUploadFileToA
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
-	if r.authorization == nil {
-		return nil, reportError("authorization is required and must be specified")
-	}
 	if r.file == nil {
 		return nil, reportError("file is required and must be specified")
 	}
@@ -974,7 +966,9 @@ func (a *AgreementsAPIService) UploadFileToAgreementIdExecute(r ApiUploadFileToA
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
-	parameterAddToHeaderOrQuery(localVarHeaderParams, "authorization", r.authorization, "simple", "")
+	if r.authorization != nil {
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "authorization", r.authorization, "simple", "")
+	}
 	var fileLocalVarFormFileName string
 	var fileLocalVarFileName string
 	var fileLocalVarFileBytes []byte

@@ -27,18 +27,18 @@ type DocumentsAPIService service
 type ApiCreateDocumentRequest struct {
 	ctx           context.Context
 	ApiService    *DocumentsAPIService
-	authorization *string
 	document      *Document
-}
-
-func (r ApiCreateDocumentRequest) Authorization(authorization string) ApiCreateDocumentRequest {
-	r.authorization = &authorization
-	return r
+	authorization *string
 }
 
 // Document object that needs to be added to the portal
 func (r ApiCreateDocumentRequest) Document(document Document) ApiCreateDocumentRequest {
 	r.document = &document
+	return r
+}
+
+func (r ApiCreateDocumentRequest) Authorization(authorization string) ApiCreateDocumentRequest {
+	r.authorization = &authorization
 	return r
 }
 
@@ -79,9 +79,6 @@ func (a *DocumentsAPIService) CreateDocumentExecute(r ApiCreateDocumentRequest) 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
-	if r.authorization == nil {
-		return nil, reportError("authorization is required and must be specified")
-	}
 	if r.document == nil {
 		return nil, reportError("document is required and must be specified")
 	}
@@ -103,7 +100,9 @@ func (a *DocumentsAPIService) CreateDocumentExecute(r ApiCreateDocumentRequest) 
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
-	parameterAddToHeaderOrQuery(localVarHeaderParams, "authorization", r.authorization, "simple", "")
+	if r.authorization != nil {
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "authorization", r.authorization, "simple", "")
+	}
 	// body params
 	localVarPostBody = r.document
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
@@ -147,8 +146,8 @@ func (a *DocumentsAPIService) CreateDocumentExecute(r ApiCreateDocumentRequest) 
 type ApiDeleteDocumentByIdRequest struct {
 	ctx           context.Context
 	ApiService    *DocumentsAPIService
-	authorization *string
 	documentId    int64
+	authorization *string
 }
 
 func (r ApiDeleteDocumentByIdRequest) Authorization(authorization string) ApiDeleteDocumentByIdRequest {
@@ -194,9 +193,6 @@ func (a *DocumentsAPIService) DeleteDocumentByIdExecute(r ApiDeleteDocumentByIdR
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
-	if r.authorization == nil {
-		return nil, reportError("authorization is required and must be specified")
-	}
 
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
@@ -215,7 +211,9 @@ func (a *DocumentsAPIService) DeleteDocumentByIdExecute(r ApiDeleteDocumentByIdR
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
-	parameterAddToHeaderOrQuery(localVarHeaderParams, "authorization", r.authorization, "simple", "")
+	if r.authorization != nil {
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "authorization", r.authorization, "simple", "")
+	}
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return nil, err
@@ -258,8 +256,8 @@ func (a *DocumentsAPIService) DeleteDocumentByIdExecute(r ApiDeleteDocumentByIdR
 type ApiGetDocumentByIdRequest struct {
 	ctx           context.Context
 	ApiService    *DocumentsAPIService
-	authorization *string
 	documentId    int64
+	authorization *string
 }
 
 func (r ApiGetDocumentByIdRequest) Authorization(authorization string) ApiGetDocumentByIdRequest {
@@ -310,9 +308,6 @@ func (a *DocumentsAPIService) GetDocumentByIdExecute(r ApiGetDocumentByIdRequest
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
-	if r.authorization == nil {
-		return localVarReturnValue, nil, reportError("authorization is required and must be specified")
-	}
 
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
@@ -331,7 +326,9 @@ func (a *DocumentsAPIService) GetDocumentByIdExecute(r ApiGetDocumentByIdRequest
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
-	parameterAddToHeaderOrQuery(localVarHeaderParams, "authorization", r.authorization, "simple", "")
+	if r.authorization != nil {
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "authorization", r.authorization, "simple", "")
+	}
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return localVarReturnValue, nil, err
@@ -536,9 +533,6 @@ func (a *DocumentsAPIService) GetDocumentsExecute(r ApiGetDocumentsRequest) (*Do
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
-	if r.authorization == nil {
-		return localVarReturnValue, nil, reportError("authorization is required and must be specified")
-	}
 
 	if r.name != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "name", r.name, "form", "")
@@ -610,7 +604,9 @@ func (a *DocumentsAPIService) GetDocumentsExecute(r ApiGetDocumentsRequest) (*Do
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
-	parameterAddToHeaderOrQuery(localVarHeaderParams, "authorization", r.authorization, "simple", "")
+	if r.authorization != nil {
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "authorization", r.authorization, "simple", "")
+	}
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return localVarReturnValue, nil, err
@@ -661,19 +657,19 @@ func (a *DocumentsAPIService) GetDocumentsExecute(r ApiGetDocumentsRequest) (*Do
 type ApiUpdateDocumentByIdRequest struct {
 	ctx           context.Context
 	ApiService    *DocumentsAPIService
-	authorization *string
 	documentId    int64
 	document      *Document
-}
-
-func (r ApiUpdateDocumentByIdRequest) Authorization(authorization string) ApiUpdateDocumentByIdRequest {
-	r.authorization = &authorization
-	return r
+	authorization *string
 }
 
 // Document fields that needs to be updated to the portal
 func (r ApiUpdateDocumentByIdRequest) Document(document Document) ApiUpdateDocumentByIdRequest {
 	r.document = &document
+	return r
+}
+
+func (r ApiUpdateDocumentByIdRequest) Authorization(authorization string) ApiUpdateDocumentByIdRequest {
+	r.authorization = &authorization
 	return r
 }
 
@@ -717,9 +713,6 @@ func (a *DocumentsAPIService) UpdateDocumentByIdExecute(r ApiUpdateDocumentByIdR
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
-	if r.authorization == nil {
-		return nil, reportError("authorization is required and must be specified")
-	}
 	if r.document == nil {
 		return nil, reportError("document is required and must be specified")
 	}
@@ -741,7 +734,9 @@ func (a *DocumentsAPIService) UpdateDocumentByIdExecute(r ApiUpdateDocumentByIdR
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
-	parameterAddToHeaderOrQuery(localVarHeaderParams, "authorization", r.authorization, "simple", "")
+	if r.authorization != nil {
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "authorization", r.authorization, "simple", "")
+	}
 	// body params
 	localVarPostBody = r.document
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
@@ -786,19 +781,19 @@ func (a *DocumentsAPIService) UpdateDocumentByIdExecute(r ApiUpdateDocumentByIdR
 type ApiUploadFileToDocumentIdRequest struct {
 	ctx           context.Context
 	ApiService    *DocumentsAPIService
-	authorization *string
 	documentId    int64
 	file          *os.File
-}
-
-func (r ApiUploadFileToDocumentIdRequest) Authorization(authorization string) ApiUploadFileToDocumentIdRequest {
-	r.authorization = &authorization
-	return r
+	authorization *string
 }
 
 // The file to upload.
 func (r ApiUploadFileToDocumentIdRequest) File(file *os.File) ApiUploadFileToDocumentIdRequest {
 	r.file = file
+	return r
+}
+
+func (r ApiUploadFileToDocumentIdRequest) Authorization(authorization string) ApiUploadFileToDocumentIdRequest {
+	r.authorization = &authorization
 	return r
 }
 
@@ -842,9 +837,6 @@ func (a *DocumentsAPIService) UploadFileToDocumentIdExecute(r ApiUploadFileToDoc
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
-	if r.authorization == nil {
-		return nil, reportError("authorization is required and must be specified")
-	}
 	if r.file == nil {
 		return nil, reportError("file is required and must be specified")
 	}
@@ -866,7 +858,9 @@ func (a *DocumentsAPIService) UploadFileToDocumentIdExecute(r ApiUploadFileToDoc
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
-	parameterAddToHeaderOrQuery(localVarHeaderParams, "authorization", r.authorization, "simple", "")
+	if r.authorization != nil {
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "authorization", r.authorization, "simple", "")
+	}
 	var fileLocalVarFormFileName string
 	var fileLocalVarFileName string
 	var fileLocalVarFileBytes []byte

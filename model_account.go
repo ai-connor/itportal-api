@@ -13,7 +13,6 @@ package itportalapi
 import (
 	"encoding/json"
 	"fmt"
-	"time"
 )
 
 // checks if the Account type satisfies the MappedNullable interface at compile time
@@ -62,8 +61,8 @@ type Account struct {
 	// Reason - why this item is being \"checked out/marked inactive\"
 	InOutNotes *string `json:"inOutNotes,omitempty"`
 	// The date the account was most recently modified.
-	Modified             *time.Time `json:"modified,omitempty"`
-	Sheets               *Sheet     `json:"sheets,omitempty"`
+	Modified             *string `json:"modified,omitempty"`
+	Sheets               *Sheet  `json:"sheets,omitempty"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -770,9 +769,9 @@ func (o *Account) SetInOutNotes(v string) {
 }
 
 // GetModified returns the Modified field value if set, zero value otherwise.
-func (o *Account) GetModified() time.Time {
+func (o *Account) GetModified() string {
 	if o == nil || IsNil(o.Modified) {
-		var ret time.Time
+		var ret string
 		return ret
 	}
 	return *o.Modified
@@ -780,7 +779,7 @@ func (o *Account) GetModified() time.Time {
 
 // GetModifiedOk returns a tuple with the Modified field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *Account) GetModifiedOk() (*time.Time, bool) {
+func (o *Account) GetModifiedOk() (*string, bool) {
 	if o == nil || IsNil(o.Modified) {
 		return nil, false
 	}
@@ -796,8 +795,8 @@ func (o *Account) HasModified() bool {
 	return false
 }
 
-// SetModified gets a reference to the given time.Time and assigns it to the Modified field.
-func (o *Account) SetModified(v time.Time) {
+// SetModified gets a reference to the given string and assigns it to the Modified field.
+func (o *Account) SetModified(v string) {
 	o.Modified = &v
 }
 

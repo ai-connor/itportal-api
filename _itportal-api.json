@@ -5286,7 +5286,7 @@
             "authorization": {
                 "name": "authorization",
                 "in": "header",
-                "required": true,
+                "required": false,
                 "schema": {
                     "type": "string",
                     "default": "2215385D614E6873447B60536C655873605063755969002C4ED6D881DC29236858B3ADD9AC42360D06E41C8DD745DFE24BD26162DB02A32F549C2D7FD852CEE75AD01A12"
@@ -6100,8 +6100,7 @@
             },
             "status": {
                 "description": "A string description of the call status.",
-                "type": "integer",
-                "format": "int32"
+                "type": "string"
             },
             "etag": {
                 "description": "A digest value of the content returned by the call.",
@@ -7917,11 +7916,11 @@
                     },
                     "modified": {
                         "type": "string",
-                        "format": "date-time",
                         "description": "The date the company was most recently modified.",
                         "readOnly": true
                     },
                     "sheets": {
+                        "type": "array",
                         "$ref": "#/components/schemas/Sheet"
                     }
                 },
@@ -8067,7 +8066,6 @@
                     },
                     "modified": {
                         "type": "string",
-                        "format": "date-time",
                         "description": "The date the account was most recently modified.",
                         "readOnly": true
                     },
@@ -8196,7 +8194,6 @@
                     },
                     "modified": {
                         "type": "string",
-                        "format": "date-time",
                         "description": "The date the agreement was most recently modified.",
                         "readOnly": true
                     },
@@ -8339,7 +8336,6 @@
                     },
                     "modified": {
                         "type": "string",
-                        "format": "date-time",
                         "description": "The date the configuration was most recently modified.",
                         "readOnly": true
                     },
@@ -8475,7 +8471,6 @@
                     },
                     "modified": {
                         "type": "string",
-                        "format": "date-time",
                         "description": "The date the contact was most recently modified.",
                         "readOnly": true
                     },
@@ -8613,7 +8608,6 @@
                     },
                     "modified": {
                         "type": "string",
-                        "format": "date-time",
                         "description": "The date the site was most recently modified.",
                         "readOnly": true
                     },
@@ -8702,7 +8696,6 @@
                     },
                     "modified": {
                         "type": "string",
-                        "format": "date-time",
                         "description": "The date the cabinet was most recently modified.",
                         "readOnly": true
                     },
@@ -8796,7 +8789,6 @@
                     },
                     "modified": {
                         "type": "string",
-                        "format": "date-time",
                         "description": "The date the facility was most recently modified.",
                         "readOnly": true
                     },
@@ -8906,7 +8898,6 @@
                     },
                     "modified": {
                         "type": "string",
-                        "format": "date-time",
                         "description": "The date the document was most recently modified.",
                         "readOnly": true
                     },
@@ -9231,7 +9222,6 @@
                     },
                     "modified": {
                         "type": "string",
-                        "format": "date-time",
                         "description": "The date the device was most recently modified.",
                         "readOnly": true
                     },
@@ -9665,7 +9655,6 @@
                     },
                     "modified": {
                         "type": "string",
-                        "format": "date-time",
                         "description": "The date the IP Network was most recently modified.",
                         "readOnly": true
                     },
@@ -9765,7 +9754,6 @@
                     },
                     "modified": {
                         "type": "string",
-                        "format": "date-time",
                         "description": "The date the Switch Port Range was most recently modified.",
                         "readOnly": true
                     }
@@ -9837,7 +9825,6 @@
                     },
                     "modified": {
                         "type": "string",
-                        "format": "date-time",
                         "description": "The date the Switch Port was most recently modified.",
                         "readOnly": true
                     }
@@ -10211,7 +10198,6 @@
                     },
                     "modified": {
                         "type": "string",
-                        "format": "date-time",
                         "description": "The date the knowledge base article was most recently modified.",
                         "readOnly": true
                     },
@@ -10451,7 +10437,6 @@
                     },
                     "modified": {
                         "type": "string",
-                        "format": "date-time",
                         "description": "The modifiydate of the sheet field."
                     },
                     "submitdate": {

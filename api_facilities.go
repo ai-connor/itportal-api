@@ -26,18 +26,18 @@ type FacilitiesAPIService service
 type ApiCreateFacilityRequest struct {
 	ctx           context.Context
 	ApiService    *FacilitiesAPIService
-	authorization *string
 	facility      *Facility
-}
-
-func (r ApiCreateFacilityRequest) Authorization(authorization string) ApiCreateFacilityRequest {
-	r.authorization = &authorization
-	return r
+	authorization *string
 }
 
 // Facility object that needs to be added to the portal
 func (r ApiCreateFacilityRequest) Facility(facility Facility) ApiCreateFacilityRequest {
 	r.facility = &facility
+	return r
+}
+
+func (r ApiCreateFacilityRequest) Authorization(authorization string) ApiCreateFacilityRequest {
+	r.authorization = &authorization
 	return r
 }
 
@@ -78,9 +78,6 @@ func (a *FacilitiesAPIService) CreateFacilityExecute(r ApiCreateFacilityRequest)
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
-	if r.authorization == nil {
-		return nil, reportError("authorization is required and must be specified")
-	}
 	if r.facility == nil {
 		return nil, reportError("facility is required and must be specified")
 	}
@@ -102,7 +99,9 @@ func (a *FacilitiesAPIService) CreateFacilityExecute(r ApiCreateFacilityRequest)
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
-	parameterAddToHeaderOrQuery(localVarHeaderParams, "authorization", r.authorization, "simple", "")
+	if r.authorization != nil {
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "authorization", r.authorization, "simple", "")
+	}
 	// body params
 	localVarPostBody = r.facility
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
@@ -146,8 +145,8 @@ func (a *FacilitiesAPIService) CreateFacilityExecute(r ApiCreateFacilityRequest)
 type ApiDeleteFacilityByIdRequest struct {
 	ctx           context.Context
 	ApiService    *FacilitiesAPIService
-	authorization *string
 	facilityId    int64
+	authorization *string
 }
 
 func (r ApiDeleteFacilityByIdRequest) Authorization(authorization string) ApiDeleteFacilityByIdRequest {
@@ -193,9 +192,6 @@ func (a *FacilitiesAPIService) DeleteFacilityByIdExecute(r ApiDeleteFacilityById
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
-	if r.authorization == nil {
-		return nil, reportError("authorization is required and must be specified")
-	}
 
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
@@ -214,7 +210,9 @@ func (a *FacilitiesAPIService) DeleteFacilityByIdExecute(r ApiDeleteFacilityById
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
-	parameterAddToHeaderOrQuery(localVarHeaderParams, "authorization", r.authorization, "simple", "")
+	if r.authorization != nil {
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "authorization", r.authorization, "simple", "")
+	}
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return nil, err
@@ -410,9 +408,6 @@ func (a *FacilitiesAPIService) GetFacilitiesExecute(r ApiGetFacilitiesRequest) (
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
-	if r.authorization == nil {
-		return localVarReturnValue, nil, reportError("authorization is required and must be specified")
-	}
 
 	if r.name != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "name", r.name, "form", "")
@@ -484,7 +479,9 @@ func (a *FacilitiesAPIService) GetFacilitiesExecute(r ApiGetFacilitiesRequest) (
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
-	parameterAddToHeaderOrQuery(localVarHeaderParams, "authorization", r.authorization, "simple", "")
+	if r.authorization != nil {
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "authorization", r.authorization, "simple", "")
+	}
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return localVarReturnValue, nil, err
@@ -535,8 +532,8 @@ func (a *FacilitiesAPIService) GetFacilitiesExecute(r ApiGetFacilitiesRequest) (
 type ApiGetFacilityByIdRequest struct {
 	ctx           context.Context
 	ApiService    *FacilitiesAPIService
-	authorization *string
 	facilityId    int64
+	authorization *string
 }
 
 func (r ApiGetFacilityByIdRequest) Authorization(authorization string) ApiGetFacilityByIdRequest {
@@ -587,9 +584,6 @@ func (a *FacilitiesAPIService) GetFacilityByIdExecute(r ApiGetFacilityByIdReques
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
-	if r.authorization == nil {
-		return localVarReturnValue, nil, reportError("authorization is required and must be specified")
-	}
 
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
@@ -608,7 +602,9 @@ func (a *FacilitiesAPIService) GetFacilityByIdExecute(r ApiGetFacilityByIdReques
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
-	parameterAddToHeaderOrQuery(localVarHeaderParams, "authorization", r.authorization, "simple", "")
+	if r.authorization != nil {
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "authorization", r.authorization, "simple", "")
+	}
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return localVarReturnValue, nil, err
@@ -660,19 +656,19 @@ func (a *FacilitiesAPIService) GetFacilityByIdExecute(r ApiGetFacilityByIdReques
 type ApiUpdatefacilityByIdRequest struct {
 	ctx           context.Context
 	ApiService    *FacilitiesAPIService
-	authorization *string
 	facilityId    int64
 	facility      *Facility
-}
-
-func (r ApiUpdatefacilityByIdRequest) Authorization(authorization string) ApiUpdatefacilityByIdRequest {
-	r.authorization = &authorization
-	return r
+	authorization *string
 }
 
 // Facility fields that need to be updated to the portal
 func (r ApiUpdatefacilityByIdRequest) Facility(facility Facility) ApiUpdatefacilityByIdRequest {
 	r.facility = &facility
+	return r
+}
+
+func (r ApiUpdatefacilityByIdRequest) Authorization(authorization string) ApiUpdatefacilityByIdRequest {
+	r.authorization = &authorization
 	return r
 }
 
@@ -716,9 +712,6 @@ func (a *FacilitiesAPIService) UpdatefacilityByIdExecute(r ApiUpdatefacilityById
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
-	if r.authorization == nil {
-		return nil, reportError("authorization is required and must be specified")
-	}
 	if r.facility == nil {
 		return nil, reportError("facility is required and must be specified")
 	}
@@ -740,7 +733,9 @@ func (a *FacilitiesAPIService) UpdatefacilityByIdExecute(r ApiUpdatefacilityById
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
-	parameterAddToHeaderOrQuery(localVarHeaderParams, "authorization", r.authorization, "simple", "")
+	if r.authorization != nil {
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "authorization", r.authorization, "simple", "")
+	}
 	// body params
 	localVarPostBody = r.facility
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)

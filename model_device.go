@@ -13,7 +13,6 @@ package itportalapi
 import (
 	"encoding/json"
 	"fmt"
-	"time"
 )
 
 // checks if the Device type satisfies the MappedNullable interface at compile time
@@ -118,8 +117,8 @@ type Device struct {
 	// Reason - why this item is being \"checked out/marked inactive\"
 	InOutNotes *string `json:"inOutNotes,omitempty"`
 	// The date the device was most recently modified.
-	Modified             *time.Time `json:"modified,omitempty"`
-	Sheets               *Sheet     `json:"sheets,omitempty"`
+	Modified             *string `json:"modified,omitempty"`
+	Sheets               *Sheet  `json:"sheets,omitempty"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -1804,9 +1803,9 @@ func (o *Device) SetInOutNotes(v string) {
 }
 
 // GetModified returns the Modified field value if set, zero value otherwise.
-func (o *Device) GetModified() time.Time {
+func (o *Device) GetModified() string {
 	if o == nil || IsNil(o.Modified) {
-		var ret time.Time
+		var ret string
 		return ret
 	}
 	return *o.Modified
@@ -1814,7 +1813,7 @@ func (o *Device) GetModified() time.Time {
 
 // GetModifiedOk returns a tuple with the Modified field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *Device) GetModifiedOk() (*time.Time, bool) {
+func (o *Device) GetModifiedOk() (*string, bool) {
 	if o == nil || IsNil(o.Modified) {
 		return nil, false
 	}
@@ -1830,8 +1829,8 @@ func (o *Device) HasModified() bool {
 	return false
 }
 
-// SetModified gets a reference to the given time.Time and assigns it to the Modified field.
-func (o *Device) SetModified(v time.Time) {
+// SetModified gets a reference to the given string and assigns it to the Modified field.
+func (o *Device) SetModified(v string) {
 	o.Modified = &v
 }
 

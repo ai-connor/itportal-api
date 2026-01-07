@@ -13,7 +13,6 @@ package itportalapi
 import (
 	"encoding/json"
 	"fmt"
-	"time"
 )
 
 // checks if the SwitchPort type satisfies the MappedNullable interface at compile time
@@ -29,7 +28,7 @@ type SwitchPort struct {
 	Description    *string       `json:"description,omitempty"`
 	PortAssignment *IPWithDevice `json:"portAssignment,omitempty"`
 	// The date the Switch Port was most recently modified.
-	Modified             *time.Time `json:"modified,omitempty"`
+	Modified             *string `json:"modified,omitempty"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -174,9 +173,9 @@ func (o *SwitchPort) SetPortAssignment(v IPWithDevice) {
 }
 
 // GetModified returns the Modified field value if set, zero value otherwise.
-func (o *SwitchPort) GetModified() time.Time {
+func (o *SwitchPort) GetModified() string {
 	if o == nil || IsNil(o.Modified) {
-		var ret time.Time
+		var ret string
 		return ret
 	}
 	return *o.Modified
@@ -184,7 +183,7 @@ func (o *SwitchPort) GetModified() time.Time {
 
 // GetModifiedOk returns a tuple with the Modified field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *SwitchPort) GetModifiedOk() (*time.Time, bool) {
+func (o *SwitchPort) GetModifiedOk() (*string, bool) {
 	if o == nil || IsNil(o.Modified) {
 		return nil, false
 	}
@@ -200,8 +199,8 @@ func (o *SwitchPort) HasModified() bool {
 	return false
 }
 
-// SetModified gets a reference to the given time.Time and assigns it to the Modified field.
-func (o *SwitchPort) SetModified(v time.Time) {
+// SetModified gets a reference to the given string and assigns it to the Modified field.
+func (o *SwitchPort) SetModified(v string) {
 	o.Modified = &v
 }
 

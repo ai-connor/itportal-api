@@ -13,7 +13,6 @@ package itportalapi
 import (
 	"encoding/json"
 	"fmt"
-	"time"
 )
 
 // checks if the IPNetwork type satisfies the MappedNullable interface at compile time
@@ -49,8 +48,8 @@ type IPNetwork struct {
 	// The link of the IP Network.
 	Url *string `json:"url,omitempty"`
 	// The date the IP Network was most recently modified.
-	Modified             *time.Time `json:"modified,omitempty"`
-	Sheets               *Sheet     `json:"sheets,omitempty"`
+	Modified             *string `json:"modified,omitempty"`
+	Sheets               *Sheet  `json:"sheets,omitempty"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -583,9 +582,9 @@ func (o *IPNetwork) SetUrl(v string) {
 }
 
 // GetModified returns the Modified field value if set, zero value otherwise.
-func (o *IPNetwork) GetModified() time.Time {
+func (o *IPNetwork) GetModified() string {
 	if o == nil || IsNil(o.Modified) {
-		var ret time.Time
+		var ret string
 		return ret
 	}
 	return *o.Modified
@@ -593,7 +592,7 @@ func (o *IPNetwork) GetModified() time.Time {
 
 // GetModifiedOk returns a tuple with the Modified field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *IPNetwork) GetModifiedOk() (*time.Time, bool) {
+func (o *IPNetwork) GetModifiedOk() (*string, bool) {
 	if o == nil || IsNil(o.Modified) {
 		return nil, false
 	}
@@ -609,8 +608,8 @@ func (o *IPNetwork) HasModified() bool {
 	return false
 }
 
-// SetModified gets a reference to the given time.Time and assigns it to the Modified field.
-func (o *IPNetwork) SetModified(v time.Time) {
+// SetModified gets a reference to the given string and assigns it to the Modified field.
+func (o *IPNetwork) SetModified(v string) {
 	o.Modified = &v
 }
 

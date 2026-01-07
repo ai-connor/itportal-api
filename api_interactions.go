@@ -25,20 +25,20 @@ type InteractionsAPIService service
 type ApiCreateObjetInteractionsRequest struct {
 	ctx           context.Context
 	ApiService    *InteractionsAPIService
-	authorization *string
 	objectType    string
 	objectId      int64
 	interaction   *Interaction
-}
-
-func (r ApiCreateObjetInteractionsRequest) Authorization(authorization string) ApiCreateObjetInteractionsRequest {
-	r.authorization = &authorization
-	return r
+	authorization *string
 }
 
 // Company object that needs to be added to the portal
 func (r ApiCreateObjetInteractionsRequest) Interaction(interaction Interaction) ApiCreateObjetInteractionsRequest {
 	r.interaction = &interaction
+	return r
+}
+
+func (r ApiCreateObjetInteractionsRequest) Authorization(authorization string) ApiCreateObjetInteractionsRequest {
+	r.authorization = &authorization
 	return r
 }
 
@@ -83,9 +83,6 @@ func (a *InteractionsAPIService) CreateObjetInteractionsExecute(r ApiCreateObjet
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
-	if r.authorization == nil {
-		return nil, reportError("authorization is required and must be specified")
-	}
 	if r.interaction == nil {
 		return nil, reportError("interaction is required and must be specified")
 	}
@@ -107,7 +104,9 @@ func (a *InteractionsAPIService) CreateObjetInteractionsExecute(r ApiCreateObjet
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
-	parameterAddToHeaderOrQuery(localVarHeaderParams, "authorization", r.authorization, "simple", "")
+	if r.authorization != nil {
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "authorization", r.authorization, "simple", "")
+	}
 	// body params
 	localVarPostBody = r.interaction
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
@@ -151,8 +150,8 @@ func (a *InteractionsAPIService) CreateObjetInteractionsExecute(r ApiCreateObjet
 type ApiDeleteInteractionByIdRequest struct {
 	ctx           context.Context
 	ApiService    *InteractionsAPIService
-	authorization *string
 	interactionId int64
+	authorization *string
 }
 
 func (r ApiDeleteInteractionByIdRequest) Authorization(authorization string) ApiDeleteInteractionByIdRequest {
@@ -198,9 +197,6 @@ func (a *InteractionsAPIService) DeleteInteractionByIdExecute(r ApiDeleteInterac
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
-	if r.authorization == nil {
-		return nil, reportError("authorization is required and must be specified")
-	}
 
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
@@ -219,7 +215,9 @@ func (a *InteractionsAPIService) DeleteInteractionByIdExecute(r ApiDeleteInterac
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
-	parameterAddToHeaderOrQuery(localVarHeaderParams, "authorization", r.authorization, "simple", "")
+	if r.authorization != nil {
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "authorization", r.authorization, "simple", "")
+	}
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return nil, err
@@ -262,9 +260,9 @@ func (a *InteractionsAPIService) DeleteInteractionByIdExecute(r ApiDeleteInterac
 type ApiGetObjetInteractionsRequest struct {
 	ctx           context.Context
 	ApiService    *InteractionsAPIService
-	authorization *string
 	objectType    string
 	objectId      int64
+	authorization *string
 	limit         *int32
 	offset        *int32
 	keyValue      *string
@@ -337,9 +335,6 @@ func (a *InteractionsAPIService) GetObjetInteractionsExecute(r ApiGetObjetIntera
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
-	if r.authorization == nil {
-		return localVarReturnValue, nil, reportError("authorization is required and must be specified")
-	}
 
 	if r.limit != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "limit", r.limit, "form", "")
@@ -367,7 +362,9 @@ func (a *InteractionsAPIService) GetObjetInteractionsExecute(r ApiGetObjetIntera
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
-	parameterAddToHeaderOrQuery(localVarHeaderParams, "authorization", r.authorization, "simple", "")
+	if r.authorization != nil {
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "authorization", r.authorization, "simple", "")
+	}
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return localVarReturnValue, nil, err

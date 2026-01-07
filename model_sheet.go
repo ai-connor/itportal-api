@@ -12,7 +12,6 @@ package itportalapi
 
 import (
 	"encoding/json"
-	"time"
 )
 
 // checks if the Sheet type satisfies the MappedNullable interface at compile time
@@ -27,7 +26,7 @@ type Sheet struct {
 	// The description of the sheet field.
 	Description *string `json:"description,omitempty"`
 	// The modifiydate of the sheet field.
-	Modified *time.Time `json:"modified,omitempty"`
+	Modified *string `json:"modified,omitempty"`
 	// The submitdate of the sheet field.
 	Submitdate *string `json:"submitdate,omitempty"`
 	// The submittime of the sheet field.
@@ -153,9 +152,9 @@ func (o *Sheet) SetDescription(v string) {
 }
 
 // GetModified returns the Modified field value if set, zero value otherwise.
-func (o *Sheet) GetModified() time.Time {
+func (o *Sheet) GetModified() string {
 	if o == nil || IsNil(o.Modified) {
-		var ret time.Time
+		var ret string
 		return ret
 	}
 	return *o.Modified
@@ -163,7 +162,7 @@ func (o *Sheet) GetModified() time.Time {
 
 // GetModifiedOk returns a tuple with the Modified field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *Sheet) GetModifiedOk() (*time.Time, bool) {
+func (o *Sheet) GetModifiedOk() (*string, bool) {
 	if o == nil || IsNil(o.Modified) {
 		return nil, false
 	}
@@ -179,8 +178,8 @@ func (o *Sheet) HasModified() bool {
 	return false
 }
 
-// SetModified gets a reference to the given time.Time and assigns it to the Modified field.
-func (o *Sheet) SetModified(v time.Time) {
+// SetModified gets a reference to the given string and assigns it to the Modified field.
+func (o *Sheet) SetModified(v string) {
 	o.Modified = &v
 }
 

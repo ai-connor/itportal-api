@@ -26,18 +26,18 @@ type CompaniesAPIService service
 type ApiCreateCompanyRequest struct {
 	ctx           context.Context
 	ApiService    *CompaniesAPIService
-	authorization *string
 	company       *Company
-}
-
-func (r ApiCreateCompanyRequest) Authorization(authorization string) ApiCreateCompanyRequest {
-	r.authorization = &authorization
-	return r
+	authorization *string
 }
 
 // Company object that needs to be added to the portal
 func (r ApiCreateCompanyRequest) Company(company Company) ApiCreateCompanyRequest {
 	r.company = &company
+	return r
+}
+
+func (r ApiCreateCompanyRequest) Authorization(authorization string) ApiCreateCompanyRequest {
+	r.authorization = &authorization
 	return r
 }
 
@@ -78,9 +78,6 @@ func (a *CompaniesAPIService) CreateCompanyExecute(r ApiCreateCompanyRequest) (*
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
-	if r.authorization == nil {
-		return nil, reportError("authorization is required and must be specified")
-	}
 	if r.company == nil {
 		return nil, reportError("company is required and must be specified")
 	}
@@ -102,7 +99,9 @@ func (a *CompaniesAPIService) CreateCompanyExecute(r ApiCreateCompanyRequest) (*
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
-	parameterAddToHeaderOrQuery(localVarHeaderParams, "authorization", r.authorization, "simple", "")
+	if r.authorization != nil {
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "authorization", r.authorization, "simple", "")
+	}
 	// body params
 	localVarPostBody = r.company
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
@@ -146,8 +145,8 @@ func (a *CompaniesAPIService) CreateCompanyExecute(r ApiCreateCompanyRequest) (*
 type ApiDeleteCompanyByIdRequest struct {
 	ctx           context.Context
 	ApiService    *CompaniesAPIService
-	authorization *string
 	companyId     int64
+	authorization *string
 }
 
 func (r ApiDeleteCompanyByIdRequest) Authorization(authorization string) ApiDeleteCompanyByIdRequest {
@@ -193,9 +192,6 @@ func (a *CompaniesAPIService) DeleteCompanyByIdExecute(r ApiDeleteCompanyByIdReq
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
-	if r.authorization == nil {
-		return nil, reportError("authorization is required and must be specified")
-	}
 
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
@@ -214,7 +210,9 @@ func (a *CompaniesAPIService) DeleteCompanyByIdExecute(r ApiDeleteCompanyByIdReq
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
-	parameterAddToHeaderOrQuery(localVarHeaderParams, "authorization", r.authorization, "simple", "")
+	if r.authorization != nil {
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "authorization", r.authorization, "simple", "")
+	}
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return nil, err
@@ -417,9 +415,6 @@ func (a *CompaniesAPIService) GetCompaniesExecute(r ApiGetCompaniesRequest) (*Co
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
-	if r.authorization == nil {
-		return localVarReturnValue, nil, reportError("authorization is required and must be specified")
-	}
 
 	if r.name != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "name", r.name, "form", "")
@@ -502,7 +497,9 @@ func (a *CompaniesAPIService) GetCompaniesExecute(r ApiGetCompaniesRequest) (*Co
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
-	parameterAddToHeaderOrQuery(localVarHeaderParams, "authorization", r.authorization, "simple", "")
+	if r.authorization != nil {
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "authorization", r.authorization, "simple", "")
+	}
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return localVarReturnValue, nil, err
@@ -553,8 +550,8 @@ func (a *CompaniesAPIService) GetCompaniesExecute(r ApiGetCompaniesRequest) (*Co
 type ApiGetCompanyAccountsRequest struct {
 	ctx            context.Context
 	ApiService     *CompaniesAPIService
-	authorization  *string
 	companyId      int64
+	authorization  *string
 	name           *string
 	nameStartsWith *string
 	inOut          *bool
@@ -668,9 +665,6 @@ func (a *CompaniesAPIService) GetCompanyAccountsExecute(r ApiGetCompanyAccountsR
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
-	if r.authorization == nil {
-		return localVarReturnValue, nil, reportError("authorization is required and must be specified")
-	}
 
 	if r.name != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "name", r.name, "form", "")
@@ -724,7 +718,9 @@ func (a *CompaniesAPIService) GetCompanyAccountsExecute(r ApiGetCompanyAccountsR
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
-	parameterAddToHeaderOrQuery(localVarHeaderParams, "authorization", r.authorization, "simple", "")
+	if r.authorization != nil {
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "authorization", r.authorization, "simple", "")
+	}
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return localVarReturnValue, nil, err
@@ -776,8 +772,8 @@ func (a *CompaniesAPIService) GetCompanyAccountsExecute(r ApiGetCompanyAccountsR
 type ApiGetCompanyAddressesRequest struct {
 	ctx           context.Context
 	ApiService    *CompaniesAPIService
-	authorization *string
 	companyId     int64
+	authorization *string
 	modifiedSince *string
 	limit         *int32
 	offset        *int32
@@ -856,9 +852,6 @@ func (a *CompaniesAPIService) GetCompanyAddressesExecute(r ApiGetCompanyAddresse
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
-	if r.authorization == nil {
-		return localVarReturnValue, nil, reportError("authorization is required and must be specified")
-	}
 
 	if r.modifiedSince != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "modifiedSince", r.modifiedSince, "form", "")
@@ -889,7 +882,9 @@ func (a *CompaniesAPIService) GetCompanyAddressesExecute(r ApiGetCompanyAddresse
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
-	parameterAddToHeaderOrQuery(localVarHeaderParams, "authorization", r.authorization, "simple", "")
+	if r.authorization != nil {
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "authorization", r.authorization, "simple", "")
+	}
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return localVarReturnValue, nil, err
@@ -941,8 +936,8 @@ func (a *CompaniesAPIService) GetCompanyAddressesExecute(r ApiGetCompanyAddresse
 type ApiGetCompanyByIdRequest struct {
 	ctx           context.Context
 	ApiService    *CompaniesAPIService
-	authorization *string
 	companyId     int64
+	authorization *string
 }
 
 func (r ApiGetCompanyByIdRequest) Authorization(authorization string) ApiGetCompanyByIdRequest {
@@ -993,9 +988,6 @@ func (a *CompaniesAPIService) GetCompanyByIdExecute(r ApiGetCompanyByIdRequest) 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
-	if r.authorization == nil {
-		return localVarReturnValue, nil, reportError("authorization is required and must be specified")
-	}
 
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
@@ -1014,7 +1006,9 @@ func (a *CompaniesAPIService) GetCompanyByIdExecute(r ApiGetCompanyByIdRequest) 
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
-	parameterAddToHeaderOrQuery(localVarHeaderParams, "authorization", r.authorization, "simple", "")
+	if r.authorization != nil {
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "authorization", r.authorization, "simple", "")
+	}
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return localVarReturnValue, nil, err
@@ -1066,19 +1060,19 @@ func (a *CompaniesAPIService) GetCompanyByIdExecute(r ApiGetCompanyByIdRequest) 
 type ApiUpdateCompanyByIdRequest struct {
 	ctx           context.Context
 	ApiService    *CompaniesAPIService
-	authorization *string
 	companyId     int64
 	company       *Company
-}
-
-func (r ApiUpdateCompanyByIdRequest) Authorization(authorization string) ApiUpdateCompanyByIdRequest {
-	r.authorization = &authorization
-	return r
+	authorization *string
 }
 
 // Company fields that needs to be updated to the portal
 func (r ApiUpdateCompanyByIdRequest) Company(company Company) ApiUpdateCompanyByIdRequest {
 	r.company = &company
+	return r
+}
+
+func (r ApiUpdateCompanyByIdRequest) Authorization(authorization string) ApiUpdateCompanyByIdRequest {
+	r.authorization = &authorization
 	return r
 }
 
@@ -1122,9 +1116,6 @@ func (a *CompaniesAPIService) UpdateCompanyByIdExecute(r ApiUpdateCompanyByIdReq
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
-	if r.authorization == nil {
-		return nil, reportError("authorization is required and must be specified")
-	}
 	if r.company == nil {
 		return nil, reportError("company is required and must be specified")
 	}
@@ -1146,7 +1137,9 @@ func (a *CompaniesAPIService) UpdateCompanyByIdExecute(r ApiUpdateCompanyByIdReq
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
-	parameterAddToHeaderOrQuery(localVarHeaderParams, "authorization", r.authorization, "simple", "")
+	if r.authorization != nil {
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "authorization", r.authorization, "simple", "")
+	}
 	// body params
 	localVarPostBody = r.company
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)

@@ -26,18 +26,18 @@ type AccountsAPIService service
 type ApiCreateAccountRequest struct {
 	ctx           context.Context
 	ApiService    *AccountsAPIService
-	authorization *string
 	account       *Account
-}
-
-func (r ApiCreateAccountRequest) Authorization(authorization string) ApiCreateAccountRequest {
-	r.authorization = &authorization
-	return r
+	authorization *string
 }
 
 // Account that needs to be added to the portal
 func (r ApiCreateAccountRequest) Account(account Account) ApiCreateAccountRequest {
 	r.account = &account
+	return r
+}
+
+func (r ApiCreateAccountRequest) Authorization(authorization string) ApiCreateAccountRequest {
+	r.authorization = &authorization
 	return r
 }
 
@@ -78,9 +78,6 @@ func (a *AccountsAPIService) CreateAccountExecute(r ApiCreateAccountRequest) (*h
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
-	if r.authorization == nil {
-		return nil, reportError("authorization is required and must be specified")
-	}
 	if r.account == nil {
 		return nil, reportError("account is required and must be specified")
 	}
@@ -102,7 +99,9 @@ func (a *AccountsAPIService) CreateAccountExecute(r ApiCreateAccountRequest) (*h
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
-	parameterAddToHeaderOrQuery(localVarHeaderParams, "authorization", r.authorization, "simple", "")
+	if r.authorization != nil {
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "authorization", r.authorization, "simple", "")
+	}
 	// body params
 	localVarPostBody = r.account
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
@@ -146,8 +145,8 @@ func (a *AccountsAPIService) CreateAccountExecute(r ApiCreateAccountRequest) (*h
 type ApiDeleteAccountByIdRequest struct {
 	ctx           context.Context
 	ApiService    *AccountsAPIService
-	authorization *string
 	accountId     int64
+	authorization *string
 }
 
 func (r ApiDeleteAccountByIdRequest) Authorization(authorization string) ApiDeleteAccountByIdRequest {
@@ -193,9 +192,6 @@ func (a *AccountsAPIService) DeleteAccountByIdExecute(r ApiDeleteAccountByIdRequ
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
-	if r.authorization == nil {
-		return nil, reportError("authorization is required and must be specified")
-	}
 
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
@@ -214,7 +210,9 @@ func (a *AccountsAPIService) DeleteAccountByIdExecute(r ApiDeleteAccountByIdRequ
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
-	parameterAddToHeaderOrQuery(localVarHeaderParams, "authorization", r.authorization, "simple", "")
+	if r.authorization != nil {
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "authorization", r.authorization, "simple", "")
+	}
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return nil, err
@@ -257,8 +255,8 @@ func (a *AccountsAPIService) DeleteAccountByIdExecute(r ApiDeleteAccountByIdRequ
 type ApiGetAccountByIdRequest struct {
 	ctx           context.Context
 	ApiService    *AccountsAPIService
-	authorization *string
 	accountId     int64
+	authorization *string
 }
 
 func (r ApiGetAccountByIdRequest) Authorization(authorization string) ApiGetAccountByIdRequest {
@@ -309,9 +307,6 @@ func (a *AccountsAPIService) GetAccountByIdExecute(r ApiGetAccountByIdRequest) (
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
-	if r.authorization == nil {
-		return localVarReturnValue, nil, reportError("authorization is required and must be specified")
-	}
 
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
@@ -330,7 +325,9 @@ func (a *AccountsAPIService) GetAccountByIdExecute(r ApiGetAccountByIdRequest) (
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
-	parameterAddToHeaderOrQuery(localVarHeaderParams, "authorization", r.authorization, "simple", "")
+	if r.authorization != nil {
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "authorization", r.authorization, "simple", "")
+	}
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return localVarReturnValue, nil, err
@@ -514,9 +511,6 @@ func (a *AccountsAPIService) GetAccountsExecute(r ApiGetAccountsRequest) (*Accou
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
-	if r.authorization == nil {
-		return localVarReturnValue, nil, reportError("authorization is required and must be specified")
-	}
 
 	if r.name != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "name", r.name, "form", "")
@@ -579,7 +573,9 @@ func (a *AccountsAPIService) GetAccountsExecute(r ApiGetAccountsRequest) (*Accou
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
-	parameterAddToHeaderOrQuery(localVarHeaderParams, "authorization", r.authorization, "simple", "")
+	if r.authorization != nil {
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "authorization", r.authorization, "simple", "")
+	}
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return localVarReturnValue, nil, err
@@ -630,8 +626,8 @@ func (a *AccountsAPIService) GetAccountsExecute(r ApiGetAccountsRequest) (*Accou
 type ApiGetCredentialsByAccountIdRequest struct {
 	ctx           context.Context
 	ApiService    *AccountsAPIService
-	authorization *string
 	accountId     int64
+	authorization *string
 }
 
 func (r ApiGetCredentialsByAccountIdRequest) Authorization(authorization string) ApiGetCredentialsByAccountIdRequest {
@@ -682,9 +678,6 @@ func (a *AccountsAPIService) GetCredentialsByAccountIdExecute(r ApiGetCredential
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
-	if r.authorization == nil {
-		return localVarReturnValue, nil, reportError("authorization is required and must be specified")
-	}
 
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
@@ -703,7 +696,9 @@ func (a *AccountsAPIService) GetCredentialsByAccountIdExecute(r ApiGetCredential
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
-	parameterAddToHeaderOrQuery(localVarHeaderParams, "authorization", r.authorization, "simple", "")
+	if r.authorization != nil {
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "authorization", r.authorization, "simple", "")
+	}
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return localVarReturnValue, nil, err
@@ -754,19 +749,19 @@ func (a *AccountsAPIService) GetCredentialsByAccountIdExecute(r ApiGetCredential
 type ApiUpdateAccountByIdRequest struct {
 	ctx           context.Context
 	ApiService    *AccountsAPIService
-	authorization *string
 	accountId     int64
 	account       *Account
-}
-
-func (r ApiUpdateAccountByIdRequest) Authorization(authorization string) ApiUpdateAccountByIdRequest {
-	r.authorization = &authorization
-	return r
+	authorization *string
 }
 
 // Account fields that need to be updated to the portal
 func (r ApiUpdateAccountByIdRequest) Account(account Account) ApiUpdateAccountByIdRequest {
 	r.account = &account
+	return r
+}
+
+func (r ApiUpdateAccountByIdRequest) Authorization(authorization string) ApiUpdateAccountByIdRequest {
+	r.authorization = &authorization
 	return r
 }
 
@@ -810,9 +805,6 @@ func (a *AccountsAPIService) UpdateAccountByIdExecute(r ApiUpdateAccountByIdRequ
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
-	if r.authorization == nil {
-		return nil, reportError("authorization is required and must be specified")
-	}
 	if r.account == nil {
 		return nil, reportError("account is required and must be specified")
 	}
@@ -834,7 +826,9 @@ func (a *AccountsAPIService) UpdateAccountByIdExecute(r ApiUpdateAccountByIdRequ
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
-	parameterAddToHeaderOrQuery(localVarHeaderParams, "authorization", r.authorization, "simple", "")
+	if r.authorization != nil {
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "authorization", r.authorization, "simple", "")
+	}
 	// body params
 	localVarPostBody = r.account
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)

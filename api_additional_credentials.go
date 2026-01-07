@@ -25,18 +25,18 @@ type AdditionalCredentialsAPIService service
 type ApiCreateAdditionalCredentialRequest struct {
 	ctx                  context.Context
 	ApiService           *AdditionalCredentialsAPIService
-	authorization        *string
 	additionalCredential *AdditionalCredential
-}
-
-func (r ApiCreateAdditionalCredentialRequest) Authorization(authorization string) ApiCreateAdditionalCredentialRequest {
-	r.authorization = &authorization
-	return r
+	authorization        *string
 }
 
 // Additional credential that needs to be added to the portal object
 func (r ApiCreateAdditionalCredentialRequest) AdditionalCredential(additionalCredential AdditionalCredential) ApiCreateAdditionalCredentialRequest {
 	r.additionalCredential = &additionalCredential
+	return r
+}
+
+func (r ApiCreateAdditionalCredentialRequest) Authorization(authorization string) ApiCreateAdditionalCredentialRequest {
+	r.authorization = &authorization
 	return r
 }
 
@@ -77,9 +77,6 @@ func (a *AdditionalCredentialsAPIService) CreateAdditionalCredentialExecute(r Ap
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
-	if r.authorization == nil {
-		return nil, reportError("authorization is required and must be specified")
-	}
 	if r.additionalCredential == nil {
 		return nil, reportError("additionalCredential is required and must be specified")
 	}
@@ -101,7 +98,9 @@ func (a *AdditionalCredentialsAPIService) CreateAdditionalCredentialExecute(r Ap
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
-	parameterAddToHeaderOrQuery(localVarHeaderParams, "authorization", r.authorization, "simple", "")
+	if r.authorization != nil {
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "authorization", r.authorization, "simple", "")
+	}
 	// body params
 	localVarPostBody = r.additionalCredential
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
@@ -145,8 +144,8 @@ func (a *AdditionalCredentialsAPIService) CreateAdditionalCredentialExecute(r Ap
 type ApiDeleteAdditionalCredentialByIdRequest struct {
 	ctx                    context.Context
 	ApiService             *AdditionalCredentialsAPIService
-	authorization          *string
 	additionalCredentialId int64
+	authorization          *string
 }
 
 func (r ApiDeleteAdditionalCredentialByIdRequest) Authorization(authorization string) ApiDeleteAdditionalCredentialByIdRequest {
@@ -192,9 +191,6 @@ func (a *AdditionalCredentialsAPIService) DeleteAdditionalCredentialByIdExecute(
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
-	if r.authorization == nil {
-		return nil, reportError("authorization is required and must be specified")
-	}
 
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
@@ -213,7 +209,9 @@ func (a *AdditionalCredentialsAPIService) DeleteAdditionalCredentialByIdExecute(
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
-	parameterAddToHeaderOrQuery(localVarHeaderParams, "authorization", r.authorization, "simple", "")
+	if r.authorization != nil {
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "authorization", r.authorization, "simple", "")
+	}
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return nil, err
@@ -256,8 +254,8 @@ func (a *AdditionalCredentialsAPIService) DeleteAdditionalCredentialByIdExecute(
 type ApiGetAdditionalCredentialByIdRequest struct {
 	ctx                    context.Context
 	ApiService             *AdditionalCredentialsAPIService
-	authorization          *string
 	additionalCredentialId int64
+	authorization          *string
 }
 
 func (r ApiGetAdditionalCredentialByIdRequest) Authorization(authorization string) ApiGetAdditionalCredentialByIdRequest {
@@ -308,9 +306,6 @@ func (a *AdditionalCredentialsAPIService) GetAdditionalCredentialByIdExecute(r A
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
-	if r.authorization == nil {
-		return localVarReturnValue, nil, reportError("authorization is required and must be specified")
-	}
 
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
@@ -329,7 +324,9 @@ func (a *AdditionalCredentialsAPIService) GetAdditionalCredentialByIdExecute(r A
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
-	parameterAddToHeaderOrQuery(localVarHeaderParams, "authorization", r.authorization, "simple", "")
+	if r.authorization != nil {
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "authorization", r.authorization, "simple", "")
+	}
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return localVarReturnValue, nil, err
@@ -492,9 +489,6 @@ func (a *AdditionalCredentialsAPIService) GetAdditionalCredentialsExecute(r ApiG
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
-	if r.authorization == nil {
-		return localVarReturnValue, nil, reportError("authorization is required and must be specified")
-	}
 
 	if r.objectType != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "objectType", r.objectType, "form", "")
@@ -540,7 +534,9 @@ func (a *AdditionalCredentialsAPIService) GetAdditionalCredentialsExecute(r ApiG
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
-	parameterAddToHeaderOrQuery(localVarHeaderParams, "authorization", r.authorization, "simple", "")
+	if r.authorization != nil {
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "authorization", r.authorization, "simple", "")
+	}
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return localVarReturnValue, nil, err
@@ -591,19 +587,19 @@ func (a *AdditionalCredentialsAPIService) GetAdditionalCredentialsExecute(r ApiG
 type ApiUpdateAdditionalCredentialByIdRequest struct {
 	ctx                    context.Context
 	ApiService             *AdditionalCredentialsAPIService
-	authorization          *string
 	additionalCredentialId int64
 	additionalCredential   *AdditionalCredential
-}
-
-func (r ApiUpdateAdditionalCredentialByIdRequest) Authorization(authorization string) ApiUpdateAdditionalCredentialByIdRequest {
-	r.authorization = &authorization
-	return r
+	authorization          *string
 }
 
 // Additional Credential fields that need to be updated to the portal
 func (r ApiUpdateAdditionalCredentialByIdRequest) AdditionalCredential(additionalCredential AdditionalCredential) ApiUpdateAdditionalCredentialByIdRequest {
 	r.additionalCredential = &additionalCredential
+	return r
+}
+
+func (r ApiUpdateAdditionalCredentialByIdRequest) Authorization(authorization string) ApiUpdateAdditionalCredentialByIdRequest {
+	r.authorization = &authorization
 	return r
 }
 
@@ -647,9 +643,6 @@ func (a *AdditionalCredentialsAPIService) UpdateAdditionalCredentialByIdExecute(
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
-	if r.authorization == nil {
-		return nil, reportError("authorization is required and must be specified")
-	}
 	if r.additionalCredential == nil {
 		return nil, reportError("additionalCredential is required and must be specified")
 	}
@@ -671,7 +664,9 @@ func (a *AdditionalCredentialsAPIService) UpdateAdditionalCredentialByIdExecute(
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
-	parameterAddToHeaderOrQuery(localVarHeaderParams, "authorization", r.authorization, "simple", "")
+	if r.authorization != nil {
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "authorization", r.authorization, "simple", "")
+	}
 	// body params
 	localVarPostBody = r.additionalCredential
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)

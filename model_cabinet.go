@@ -13,7 +13,6 @@ package itportalapi
 import (
 	"encoding/json"
 	"fmt"
-	"time"
 )
 
 // checks if the Cabinet type satisfies the MappedNullable interface at compile time
@@ -45,8 +44,8 @@ type Cabinet struct {
 	// Reason - why this item is being \"checked out/marked inactive\"
 	InOutNotes *string `json:"inOutNotes,omitempty"`
 	// The date the cabinet was most recently modified.
-	Modified             *time.Time `json:"modified,omitempty"`
-	Sheets               *Sheet     `json:"sheets,omitempty"`
+	Modified             *string `json:"modified,omitempty"`
+	Sheets               *Sheet  `json:"sheets,omitempty"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -536,9 +535,9 @@ func (o *Cabinet) SetInOutNotes(v string) {
 }
 
 // GetModified returns the Modified field value if set, zero value otherwise.
-func (o *Cabinet) GetModified() time.Time {
+func (o *Cabinet) GetModified() string {
 	if o == nil || IsNil(o.Modified) {
-		var ret time.Time
+		var ret string
 		return ret
 	}
 	return *o.Modified
@@ -546,7 +545,7 @@ func (o *Cabinet) GetModified() time.Time {
 
 // GetModifiedOk returns a tuple with the Modified field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *Cabinet) GetModifiedOk() (*time.Time, bool) {
+func (o *Cabinet) GetModifiedOk() (*string, bool) {
 	if o == nil || IsNil(o.Modified) {
 		return nil, false
 	}
@@ -562,8 +561,8 @@ func (o *Cabinet) HasModified() bool {
 	return false
 }
 
-// SetModified gets a reference to the given time.Time and assigns it to the Modified field.
-func (o *Cabinet) SetModified(v time.Time) {
+// SetModified gets a reference to the given string and assigns it to the Modified field.
+func (o *Cabinet) SetModified(v string) {
 	o.Modified = &v
 }
 

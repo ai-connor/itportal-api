@@ -26,18 +26,18 @@ type IPNetworksAPIService service
 type ApiCreateIPNetworkRequest struct {
 	ctx           context.Context
 	ApiService    *IPNetworksAPIService
-	authorization *string
 	iPNetwork     *IPNetwork
-}
-
-func (r ApiCreateIPNetworkRequest) Authorization(authorization string) ApiCreateIPNetworkRequest {
-	r.authorization = &authorization
-	return r
+	authorization *string
 }
 
 // IP Network object that needs to be added to the portal
 func (r ApiCreateIPNetworkRequest) IPNetwork(iPNetwork IPNetwork) ApiCreateIPNetworkRequest {
 	r.iPNetwork = &iPNetwork
+	return r
+}
+
+func (r ApiCreateIPNetworkRequest) Authorization(authorization string) ApiCreateIPNetworkRequest {
+	r.authorization = &authorization
 	return r
 }
 
@@ -78,9 +78,6 @@ func (a *IPNetworksAPIService) CreateIPNetworkExecute(r ApiCreateIPNetworkReques
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
-	if r.authorization == nil {
-		return nil, reportError("authorization is required and must be specified")
-	}
 	if r.iPNetwork == nil {
 		return nil, reportError("iPNetwork is required and must be specified")
 	}
@@ -102,7 +99,9 @@ func (a *IPNetworksAPIService) CreateIPNetworkExecute(r ApiCreateIPNetworkReques
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
-	parameterAddToHeaderOrQuery(localVarHeaderParams, "authorization", r.authorization, "simple", "")
+	if r.authorization != nil {
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "authorization", r.authorization, "simple", "")
+	}
 	// body params
 	localVarPostBody = r.iPNetwork
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
@@ -146,8 +145,8 @@ func (a *IPNetworksAPIService) CreateIPNetworkExecute(r ApiCreateIPNetworkReques
 type ApiDeleteIPNetworkByIdRequest struct {
 	ctx           context.Context
 	ApiService    *IPNetworksAPIService
-	authorization *string
 	ipnetworkId   int64
+	authorization *string
 }
 
 func (r ApiDeleteIPNetworkByIdRequest) Authorization(authorization string) ApiDeleteIPNetworkByIdRequest {
@@ -193,9 +192,6 @@ func (a *IPNetworksAPIService) DeleteIPNetworkByIdExecute(r ApiDeleteIPNetworkBy
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
-	if r.authorization == nil {
-		return nil, reportError("authorization is required and must be specified")
-	}
 
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
@@ -214,7 +210,9 @@ func (a *IPNetworksAPIService) DeleteIPNetworkByIdExecute(r ApiDeleteIPNetworkBy
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
-	parameterAddToHeaderOrQuery(localVarHeaderParams, "authorization", r.authorization, "simple", "")
+	if r.authorization != nil {
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "authorization", r.authorization, "simple", "")
+	}
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return nil, err
@@ -257,8 +255,8 @@ func (a *IPNetworksAPIService) DeleteIPNetworkByIdExecute(r ApiDeleteIPNetworkBy
 type ApiGetIPNetworkByIdRequest struct {
 	ctx           context.Context
 	ApiService    *IPNetworksAPIService
-	authorization *string
 	ipnetworkId   int64
+	authorization *string
 }
 
 func (r ApiGetIPNetworkByIdRequest) Authorization(authorization string) ApiGetIPNetworkByIdRequest {
@@ -309,9 +307,6 @@ func (a *IPNetworksAPIService) GetIPNetworkByIdExecute(r ApiGetIPNetworkByIdRequ
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
-	if r.authorization == nil {
-		return localVarReturnValue, nil, reportError("authorization is required and must be specified")
-	}
 
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
@@ -330,7 +325,9 @@ func (a *IPNetworksAPIService) GetIPNetworkByIdExecute(r ApiGetIPNetworkByIdRequ
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
-	parameterAddToHeaderOrQuery(localVarHeaderParams, "authorization", r.authorization, "simple", "")
+	if r.authorization != nil {
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "authorization", r.authorization, "simple", "")
+	}
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return localVarReturnValue, nil, err
@@ -542,9 +539,6 @@ func (a *IPNetworksAPIService) GetIPNetworksExecute(r ApiGetIPNetworksRequest) (
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
-	if r.authorization == nil {
-		return localVarReturnValue, nil, reportError("authorization is required and must be specified")
-	}
 
 	if r.name != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "name", r.name, "form", "")
@@ -619,7 +613,9 @@ func (a *IPNetworksAPIService) GetIPNetworksExecute(r ApiGetIPNetworksRequest) (
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
-	parameterAddToHeaderOrQuery(localVarHeaderParams, "authorization", r.authorization, "simple", "")
+	if r.authorization != nil {
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "authorization", r.authorization, "simple", "")
+	}
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return localVarReturnValue, nil, err
@@ -670,19 +666,19 @@ func (a *IPNetworksAPIService) GetIPNetworksExecute(r ApiGetIPNetworksRequest) (
 type ApiUpdateIPNetworkByIdRequest struct {
 	ctx           context.Context
 	ApiService    *IPNetworksAPIService
-	authorization *string
 	ipnetworkId   int64
 	iPNetwork     *IPNetwork
-}
-
-func (r ApiUpdateIPNetworkByIdRequest) Authorization(authorization string) ApiUpdateIPNetworkByIdRequest {
-	r.authorization = &authorization
-	return r
+	authorization *string
 }
 
 // IP Network fields that need to be updated to the portal
 func (r ApiUpdateIPNetworkByIdRequest) IPNetwork(iPNetwork IPNetwork) ApiUpdateIPNetworkByIdRequest {
 	r.iPNetwork = &iPNetwork
+	return r
+}
+
+func (r ApiUpdateIPNetworkByIdRequest) Authorization(authorization string) ApiUpdateIPNetworkByIdRequest {
+	r.authorization = &authorization
 	return r
 }
 
@@ -726,9 +722,6 @@ func (a *IPNetworksAPIService) UpdateIPNetworkByIdExecute(r ApiUpdateIPNetworkBy
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
-	if r.authorization == nil {
-		return nil, reportError("authorization is required and must be specified")
-	}
 	if r.iPNetwork == nil {
 		return nil, reportError("iPNetwork is required and must be specified")
 	}
@@ -750,7 +743,9 @@ func (a *IPNetworksAPIService) UpdateIPNetworkByIdExecute(r ApiUpdateIPNetworkBy
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
-	parameterAddToHeaderOrQuery(localVarHeaderParams, "authorization", r.authorization, "simple", "")
+	if r.authorization != nil {
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "authorization", r.authorization, "simple", "")
+	}
 	// body params
 	localVarPostBody = r.iPNetwork
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)

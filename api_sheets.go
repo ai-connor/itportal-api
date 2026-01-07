@@ -25,20 +25,20 @@ type SheetsAPIService service
 type ApiCreateSheetRequest struct {
 	ctx           context.Context
 	ApiService    *SheetsAPIService
-	authorization *string
 	itemType      string
 	itemId        int32
 	sheetData     *SheetData
-}
-
-func (r ApiCreateSheetRequest) Authorization(authorization string) ApiCreateSheetRequest {
-	r.authorization = &authorization
-	return r
+	authorization *string
 }
 
 // Sheet object that needs to be added to the object
 func (r ApiCreateSheetRequest) SheetData(sheetData SheetData) ApiCreateSheetRequest {
 	r.sheetData = &sheetData
+	return r
+}
+
+func (r ApiCreateSheetRequest) Authorization(authorization string) ApiCreateSheetRequest {
+	r.authorization = &authorization
 	return r
 }
 
@@ -85,9 +85,6 @@ func (a *SheetsAPIService) CreateSheetExecute(r ApiCreateSheetRequest) (*http.Re
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
-	if r.authorization == nil {
-		return nil, reportError("authorization is required and must be specified")
-	}
 	if r.sheetData == nil {
 		return nil, reportError("sheetData is required and must be specified")
 	}
@@ -109,7 +106,9 @@ func (a *SheetsAPIService) CreateSheetExecute(r ApiCreateSheetRequest) (*http.Re
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
-	parameterAddToHeaderOrQuery(localVarHeaderParams, "authorization", r.authorization, "simple", "")
+	if r.authorization != nil {
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "authorization", r.authorization, "simple", "")
+	}
 	// body params
 	localVarPostBody = r.sheetData
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
@@ -153,8 +152,8 @@ func (a *SheetsAPIService) CreateSheetExecute(r ApiCreateSheetRequest) (*http.Re
 type ApiDeleteSheetByIdRequest struct {
 	ctx           context.Context
 	ApiService    *SheetsAPIService
-	authorization *string
 	sheetId       int32
+	authorization *string
 }
 
 func (r ApiDeleteSheetByIdRequest) Authorization(authorization string) ApiDeleteSheetByIdRequest {
@@ -200,9 +199,6 @@ func (a *SheetsAPIService) DeleteSheetByIdExecute(r ApiDeleteSheetByIdRequest) (
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
-	if r.authorization == nil {
-		return nil, reportError("authorization is required and must be specified")
-	}
 
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
@@ -221,7 +217,9 @@ func (a *SheetsAPIService) DeleteSheetByIdExecute(r ApiDeleteSheetByIdRequest) (
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
-	parameterAddToHeaderOrQuery(localVarHeaderParams, "authorization", r.authorization, "simple", "")
+	if r.authorization != nil {
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "authorization", r.authorization, "simple", "")
+	}
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return nil, err
@@ -264,8 +262,8 @@ func (a *SheetsAPIService) DeleteSheetByIdExecute(r ApiDeleteSheetByIdRequest) (
 type ApiGetObjectSheetByIdRequest struct {
 	ctx           context.Context
 	ApiService    *SheetsAPIService
-	authorization *string
 	sheetId       int32
+	authorization *string
 }
 
 func (r ApiGetObjectSheetByIdRequest) Authorization(authorization string) ApiGetObjectSheetByIdRequest {
@@ -316,9 +314,6 @@ func (a *SheetsAPIService) GetObjectSheetByIdExecute(r ApiGetObjectSheetByIdRequ
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
-	if r.authorization == nil {
-		return localVarReturnValue, nil, reportError("authorization is required and must be specified")
-	}
 
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
@@ -337,7 +332,9 @@ func (a *SheetsAPIService) GetObjectSheetByIdExecute(r ApiGetObjectSheetByIdRequ
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
-	parameterAddToHeaderOrQuery(localVarHeaderParams, "authorization", r.authorization, "simple", "")
+	if r.authorization != nil {
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "authorization", r.authorization, "simple", "")
+	}
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return localVarReturnValue, nil, err
@@ -388,19 +385,19 @@ func (a *SheetsAPIService) GetObjectSheetByIdExecute(r ApiGetObjectSheetByIdRequ
 type ApiUpdateSheetByIdRequest struct {
 	ctx           context.Context
 	ApiService    *SheetsAPIService
-	authorization *string
 	sheetId       int32
 	sheetData     *SheetData
-}
-
-func (r ApiUpdateSheetByIdRequest) Authorization(authorization string) ApiUpdateSheetByIdRequest {
-	r.authorization = &authorization
-	return r
+	authorization *string
 }
 
 // Sheet fields that needs to be updated to the portal
 func (r ApiUpdateSheetByIdRequest) SheetData(sheetData SheetData) ApiUpdateSheetByIdRequest {
 	r.sheetData = &sheetData
+	return r
+}
+
+func (r ApiUpdateSheetByIdRequest) Authorization(authorization string) ApiUpdateSheetByIdRequest {
+	r.authorization = &authorization
 	return r
 }
 
@@ -444,9 +441,6 @@ func (a *SheetsAPIService) UpdateSheetByIdExecute(r ApiUpdateSheetByIdRequest) (
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
-	if r.authorization == nil {
-		return nil, reportError("authorization is required and must be specified")
-	}
 	if r.sheetData == nil {
 		return nil, reportError("sheetData is required and must be specified")
 	}
@@ -468,7 +462,9 @@ func (a *SheetsAPIService) UpdateSheetByIdExecute(r ApiUpdateSheetByIdRequest) (
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
-	parameterAddToHeaderOrQuery(localVarHeaderParams, "authorization", r.authorization, "simple", "")
+	if r.authorization != nil {
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "authorization", r.authorization, "simple", "")
+	}
 	// body params
 	localVarPostBody = r.sheetData
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)

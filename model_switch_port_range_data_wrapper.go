@@ -22,7 +22,7 @@ type SwitchPortRangeDataWrapper struct {
 	// The HTTP status code of the returned result.
 	Code *int32 `json:"code,omitempty"`
 	// A string description of the call status.
-	Status *int32                        `json:"status,omitempty"`
+	Status *string                       `json:"status,omitempty"`
 	Data   *SwitchPortRangeDataContainer `json:"data,omitempty"`
 	// A digest value of the content returned by the call.
 	Etag                 *string `json:"etag,omitempty"`
@@ -81,9 +81,9 @@ func (o *SwitchPortRangeDataWrapper) SetCode(v int32) {
 }
 
 // GetStatus returns the Status field value if set, zero value otherwise.
-func (o *SwitchPortRangeDataWrapper) GetStatus() int32 {
+func (o *SwitchPortRangeDataWrapper) GetStatus() string {
 	if o == nil || IsNil(o.Status) {
-		var ret int32
+		var ret string
 		return ret
 	}
 	return *o.Status
@@ -91,7 +91,7 @@ func (o *SwitchPortRangeDataWrapper) GetStatus() int32 {
 
 // GetStatusOk returns a tuple with the Status field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *SwitchPortRangeDataWrapper) GetStatusOk() (*int32, bool) {
+func (o *SwitchPortRangeDataWrapper) GetStatusOk() (*string, bool) {
 	if o == nil || IsNil(o.Status) {
 		return nil, false
 	}
@@ -107,8 +107,8 @@ func (o *SwitchPortRangeDataWrapper) HasStatus() bool {
 	return false
 }
 
-// SetStatus gets a reference to the given int32 and assigns it to the Status field.
-func (o *SwitchPortRangeDataWrapper) SetStatus(v int32) {
+// SetStatus gets a reference to the given string and assigns it to the Status field.
+func (o *SwitchPortRangeDataWrapper) SetStatus(v string) {
 	o.Status = &v
 }
 

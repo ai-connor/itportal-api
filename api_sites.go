@@ -26,18 +26,18 @@ type SitesAPIService service
 type ApiCreateSiteRequest struct {
 	ctx           context.Context
 	ApiService    *SitesAPIService
-	authorization *string
 	site          *Site
-}
-
-func (r ApiCreateSiteRequest) Authorization(authorization string) ApiCreateSiteRequest {
-	r.authorization = &authorization
-	return r
+	authorization *string
 }
 
 // Site that needs to be added to the portal
 func (r ApiCreateSiteRequest) Site(site Site) ApiCreateSiteRequest {
 	r.site = &site
+	return r
+}
+
+func (r ApiCreateSiteRequest) Authorization(authorization string) ApiCreateSiteRequest {
+	r.authorization = &authorization
 	return r
 }
 
@@ -78,9 +78,6 @@ func (a *SitesAPIService) CreateSiteExecute(r ApiCreateSiteRequest) (*http.Respo
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
-	if r.authorization == nil {
-		return nil, reportError("authorization is required and must be specified")
-	}
 	if r.site == nil {
 		return nil, reportError("site is required and must be specified")
 	}
@@ -102,7 +99,9 @@ func (a *SitesAPIService) CreateSiteExecute(r ApiCreateSiteRequest) (*http.Respo
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
-	parameterAddToHeaderOrQuery(localVarHeaderParams, "authorization", r.authorization, "simple", "")
+	if r.authorization != nil {
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "authorization", r.authorization, "simple", "")
+	}
 	// body params
 	localVarPostBody = r.site
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
@@ -146,8 +145,8 @@ func (a *SitesAPIService) CreateSiteExecute(r ApiCreateSiteRequest) (*http.Respo
 type ApiDeleteSiteByIdRequest struct {
 	ctx           context.Context
 	ApiService    *SitesAPIService
-	authorization *string
 	siteId        int64
+	authorization *string
 }
 
 func (r ApiDeleteSiteByIdRequest) Authorization(authorization string) ApiDeleteSiteByIdRequest {
@@ -193,9 +192,6 @@ func (a *SitesAPIService) DeleteSiteByIdExecute(r ApiDeleteSiteByIdRequest) (*ht
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
-	if r.authorization == nil {
-		return nil, reportError("authorization is required and must be specified")
-	}
 
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
@@ -214,7 +210,9 @@ func (a *SitesAPIService) DeleteSiteByIdExecute(r ApiDeleteSiteByIdRequest) (*ht
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
-	parameterAddToHeaderOrQuery(localVarHeaderParams, "authorization", r.authorization, "simple", "")
+	if r.authorization != nil {
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "authorization", r.authorization, "simple", "")
+	}
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return nil, err
@@ -257,8 +255,8 @@ func (a *SitesAPIService) DeleteSiteByIdExecute(r ApiDeleteSiteByIdRequest) (*ht
 type ApiGetSiteByIdRequest struct {
 	ctx           context.Context
 	ApiService    *SitesAPIService
-	authorization *string
 	siteId        int64
+	authorization *string
 }
 
 func (r ApiGetSiteByIdRequest) Authorization(authorization string) ApiGetSiteByIdRequest {
@@ -309,9 +307,6 @@ func (a *SitesAPIService) GetSiteByIdExecute(r ApiGetSiteByIdRequest) (*SiteData
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
-	if r.authorization == nil {
-		return localVarReturnValue, nil, reportError("authorization is required and must be specified")
-	}
 
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
@@ -330,7 +325,9 @@ func (a *SitesAPIService) GetSiteByIdExecute(r ApiGetSiteByIdRequest) (*SiteData
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
-	parameterAddToHeaderOrQuery(localVarHeaderParams, "authorization", r.authorization, "simple", "")
+	if r.authorization != nil {
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "authorization", r.authorization, "simple", "")
+	}
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return localVarReturnValue, nil, err
@@ -563,9 +560,6 @@ func (a *SitesAPIService) GetSitesExecute(r ApiGetSitesRequest) (*SiteDataWrappe
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
-	if r.authorization == nil {
-		return localVarReturnValue, nil, reportError("authorization is required and must be specified")
-	}
 
 	if r.name != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "name", r.name, "form", "")
@@ -657,7 +651,9 @@ func (a *SitesAPIService) GetSitesExecute(r ApiGetSitesRequest) (*SiteDataWrappe
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
-	parameterAddToHeaderOrQuery(localVarHeaderParams, "authorization", r.authorization, "simple", "")
+	if r.authorization != nil {
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "authorization", r.authorization, "simple", "")
+	}
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return localVarReturnValue, nil, err
@@ -708,19 +704,19 @@ func (a *SitesAPIService) GetSitesExecute(r ApiGetSitesRequest) (*SiteDataWrappe
 type ApiUpdateSiteByIdRequest struct {
 	ctx           context.Context
 	ApiService    *SitesAPIService
-	authorization *string
 	siteId        int64
 	site          *Site
-}
-
-func (r ApiUpdateSiteByIdRequest) Authorization(authorization string) ApiUpdateSiteByIdRequest {
-	r.authorization = &authorization
-	return r
+	authorization *string
 }
 
 // Site fields that need to be updated to the portal
 func (r ApiUpdateSiteByIdRequest) Site(site Site) ApiUpdateSiteByIdRequest {
 	r.site = &site
+	return r
+}
+
+func (r ApiUpdateSiteByIdRequest) Authorization(authorization string) ApiUpdateSiteByIdRequest {
+	r.authorization = &authorization
 	return r
 }
 
@@ -764,9 +760,6 @@ func (a *SitesAPIService) UpdateSiteByIdExecute(r ApiUpdateSiteByIdRequest) (*ht
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
-	if r.authorization == nil {
-		return nil, reportError("authorization is required and must be specified")
-	}
 	if r.site == nil {
 		return nil, reportError("site is required and must be specified")
 	}
@@ -788,7 +781,9 @@ func (a *SitesAPIService) UpdateSiteByIdExecute(r ApiUpdateSiteByIdRequest) (*ht
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
-	parameterAddToHeaderOrQuery(localVarHeaderParams, "authorization", r.authorization, "simple", "")
+	if r.authorization != nil {
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "authorization", r.authorization, "simple", "")
+	}
 	// body params
 	localVarPostBody = r.site
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
