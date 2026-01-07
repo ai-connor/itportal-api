@@ -28,7 +28,7 @@ type ConfigurationDataContainer struct {
 	// The total number of results returned by this call.
 	Count *int64 `json:"count,omitempty"`
 	// The list of configurations returned by the call.
-	Results              []Configuration `json:"results,omitempty"`
+	Results              []ModelConfiguration `json:"results,omitempty"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -180,9 +180,9 @@ func (o *ConfigurationDataContainer) SetCount(v int64) {
 }
 
 // GetResults returns the Results field value if set, zero value otherwise.
-func (o *ConfigurationDataContainer) GetResults() []Configuration {
+func (o *ConfigurationDataContainer) GetResults() []ModelConfiguration {
 	if o == nil || IsNil(o.Results) {
-		var ret []Configuration
+		var ret []ModelConfiguration
 		return ret
 	}
 	return o.Results
@@ -190,7 +190,7 @@ func (o *ConfigurationDataContainer) GetResults() []Configuration {
 
 // GetResultsOk returns a tuple with the Results field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *ConfigurationDataContainer) GetResultsOk() ([]Configuration, bool) {
+func (o *ConfigurationDataContainer) GetResultsOk() ([]ModelConfiguration, bool) {
 	if o == nil || IsNil(o.Results) {
 		return nil, false
 	}
@@ -206,8 +206,8 @@ func (o *ConfigurationDataContainer) HasResults() bool {
 	return false
 }
 
-// SetResults gets a reference to the given []Configuration and assigns it to the Results field.
-func (o *ConfigurationDataContainer) SetResults(v []Configuration) {
+// SetResults gets a reference to the given []ModelConfiguration and assigns it to the Results field.
+func (o *ConfigurationDataContainer) SetResults(v []ModelConfiguration) {
 	o.Results = v
 }
 

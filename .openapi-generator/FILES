@@ -58,7 +58,6 @@ model_company_reference.go
 model_company_type.go
 model_company_type_data_container.go
 model_company_type_data_wrapper.go
-model_configuration.go
 model_configuration_data_container.go
 model_configuration_data_wrapper.go
 model_configuration_file.go
@@ -134,6 +133,7 @@ model_main_contact.go
 model_main_contact_data_container.go
 model_main_contact_data_wrapper.go
 model_management.go
+model_model_configuration.go
 model_object_with_template.go
 model_portal_object.go
 model_preferred_access.go

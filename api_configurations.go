@@ -24,15 +24,15 @@ import (
 type ConfigurationsAPIService service
 
 type ApiCreateConfigurationRequest struct {
-	ctx           context.Context
-	ApiService    *ConfigurationsAPIService
-	configuration *Configuration
-	authorization *string
+	ctx                context.Context
+	ApiService         *ConfigurationsAPIService
+	modelConfiguration *ModelConfiguration
+	authorization      *string
 }
 
 // Configuration that needs to be added to the portal
-func (r ApiCreateConfigurationRequest) Configuration(configuration Configuration) ApiCreateConfigurationRequest {
-	r.configuration = &configuration
+func (r ApiCreateConfigurationRequest) ModelConfiguration(modelConfiguration ModelConfiguration) ApiCreateConfigurationRequest {
+	r.modelConfiguration = &modelConfiguration
 	return r
 }
 
@@ -78,8 +78,8 @@ func (a *ConfigurationsAPIService) CreateConfigurationExecute(r ApiCreateConfigu
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
-	if r.configuration == nil {
-		return nil, reportError("configuration is required and must be specified")
+	if r.modelConfiguration == nil {
+		return nil, reportError("modelConfiguration is required and must be specified")
 	}
 
 	// to determine the Content-Type header
@@ -103,7 +103,7 @@ func (a *ConfigurationsAPIService) CreateConfigurationExecute(r ApiCreateConfigu
 		parameterAddToHeaderOrQuery(localVarHeaderParams, "authorization", r.authorization, "simple", "")
 	}
 	// body params
-	localVarPostBody = r.configuration
+	localVarPostBody = r.modelConfiguration
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return nil, err
@@ -692,16 +692,16 @@ func (a *ConfigurationsAPIService) GetConfigurationsExecute(r ApiGetConfiguratio
 }
 
 type ApiUpdateConfigurationByIdRequest struct {
-	ctx             context.Context
-	ApiService      *ConfigurationsAPIService
-	configurationId int64
-	configuration   *Configuration
-	authorization   *string
+	ctx                context.Context
+	ApiService         *ConfigurationsAPIService
+	configurationId    int64
+	modelConfiguration *ModelConfiguration
+	authorization      *string
 }
 
 // Configuration fields that need to be updated to the portal
-func (r ApiUpdateConfigurationByIdRequest) Configuration(configuration Configuration) ApiUpdateConfigurationByIdRequest {
-	r.configuration = &configuration
+func (r ApiUpdateConfigurationByIdRequest) ModelConfiguration(modelConfiguration ModelConfiguration) ApiUpdateConfigurationByIdRequest {
+	r.modelConfiguration = &modelConfiguration
 	return r
 }
 
@@ -750,8 +750,8 @@ func (a *ConfigurationsAPIService) UpdateConfigurationByIdExecute(r ApiUpdateCon
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
-	if r.configuration == nil {
-		return nil, reportError("configuration is required and must be specified")
+	if r.modelConfiguration == nil {
+		return nil, reportError("modelConfiguration is required and must be specified")
 	}
 
 	// to determine the Content-Type header
@@ -775,7 +775,7 @@ func (a *ConfigurationsAPIService) UpdateConfigurationByIdExecute(r ApiUpdateCon
 		parameterAddToHeaderOrQuery(localVarHeaderParams, "authorization", r.authorization, "simple", "")
 	}
 	// body params
-	localVarPostBody = r.configuration
+	localVarPostBody = r.modelConfiguration
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return nil, err
