@@ -49,7 +49,7 @@ type IPNetwork struct {
 	Url *string `json:"url,omitempty"`
 	// The date the IP Network was most recently modified.
 	Modified             *string `json:"modified,omitempty"`
-	Sheets               *Sheet  `json:"sheets,omitempty"`
+	Sheets               []Sheet `json:"sheets,omitempty"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -614,17 +614,17 @@ func (o *IPNetwork) SetModified(v string) {
 }
 
 // GetSheets returns the Sheets field value if set, zero value otherwise.
-func (o *IPNetwork) GetSheets() Sheet {
+func (o *IPNetwork) GetSheets() []Sheet {
 	if o == nil || IsNil(o.Sheets) {
-		var ret Sheet
+		var ret []Sheet
 		return ret
 	}
-	return *o.Sheets
+	return o.Sheets
 }
 
 // GetSheetsOk returns a tuple with the Sheets field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *IPNetwork) GetSheetsOk() (*Sheet, bool) {
+func (o *IPNetwork) GetSheetsOk() ([]Sheet, bool) {
 	if o == nil || IsNil(o.Sheets) {
 		return nil, false
 	}
@@ -640,9 +640,9 @@ func (o *IPNetwork) HasSheets() bool {
 	return false
 }
 
-// SetSheets gets a reference to the given Sheet and assigns it to the Sheets field.
-func (o *IPNetwork) SetSheets(v Sheet) {
-	o.Sheets = &v
+// SetSheets gets a reference to the given []Sheet and assigns it to the Sheets field.
+func (o *IPNetwork) SetSheets(v []Sheet) {
+	o.Sheets = v
 }
 
 func (o IPNetwork) MarshalJSON() ([]byte, error) {

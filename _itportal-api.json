@@ -7921,7 +7921,9 @@
                     },
                     "sheets": {
                         "type": "array",
-                        "$ref": "#/components/schemas/Sheet"
+                        "items": {
+                            "$ref": "#/components/schemas/Sheet"
+                        }
                     }
                 },
                 "required": [
@@ -8069,8 +8071,11 @@
                         "description": "The date the account was most recently modified.",
                         "readOnly": true
                     },
-                    "sheets": {
-                        "$ref": "#/components/schemas/Sheet"
+                   "sheets": {
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/components/schemas/Sheet"
+                        }
                     }
                 },
                 "required": [
@@ -8198,7 +8203,10 @@
                         "readOnly": true
                     },
                     "sheets": {
-                        "$ref": "#/components/schemas/Sheet"
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/components/schemas/Sheet"
+                        }
                     }
                 },
                 "required": [
@@ -8340,7 +8348,10 @@
                         "readOnly": true
                     },
                     "sheets": {
-                        "$ref": "#/components/schemas/Sheet"
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/components/schemas/Sheet"
+                        }
                     }
                 },
                 "required": [
@@ -8475,7 +8486,10 @@
                         "readOnly": true
                     },
                     "sheets": {
-                        "$ref": "#/components/schemas/Sheet"
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/components/schemas/Sheet"
+                        }
                     }
                 },
                 "required": [
@@ -8612,7 +8626,10 @@
                         "readOnly": true
                     },
                     "sheets": {
-                        "$ref": "#/components/schemas/Sheet"
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/components/schemas/Sheet"
+                        }
                     }
                 },
                 "required": [
@@ -8700,7 +8717,10 @@
                         "readOnly": true
                     },
                     "sheets": {
-                        "$ref": "#/components/schemas/Sheet"
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/components/schemas/Sheet"
+                        }
                     }
                 },
                 "required": [
@@ -8793,7 +8813,10 @@
                         "readOnly": true
                     },
                     "sheets": {
-                        "$ref": "#/components/schemas/Sheet"
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/components/schemas/Sheet"
+                        }
                     }
                 },
                 "required": [
@@ -8902,7 +8925,10 @@
                         "readOnly": true
                     },
                     "sheets": {
-                        "$ref": "#/components/schemas/Sheet"
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/components/schemas/Sheet"
+                        }
                     }
                 },
                 "required": [
@@ -9226,7 +9252,10 @@
                         "readOnly": true
                     },
                     "sheets": {
-                        "$ref": "#/components/schemas/Sheet"
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/components/schemas/Sheet"
+                        }
                     }
                 },
                 "required": [
@@ -9659,7 +9688,10 @@
                         "readOnly": true
                     },
                     "sheets": {
-                        "$ref": "#/components/schemas/Sheet"
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/components/schemas/Sheet"
+                        }
                     }
                 },
                 "required": [
@@ -10202,7 +10234,10 @@
                         "readOnly": true
                     },
                     "sheets": {
-                        "$ref": "#/components/schemas/Sheet"
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/components/schemas/Sheet"
+                        }
                     }
                 },
                 "required": [

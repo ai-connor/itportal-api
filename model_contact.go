@@ -69,7 +69,7 @@ type Contact struct {
 	InOutNotes *string `json:"inOutNotes,omitempty"`
 	// The date the contact was most recently modified.
 	Modified             *string `json:"modified,omitempty"`
-	Sheets               *Sheet  `json:"sheets,omitempty"`
+	Sheets               []Sheet `json:"sheets,omitempty"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -943,17 +943,17 @@ func (o *Contact) SetModified(v string) {
 }
 
 // GetSheets returns the Sheets field value if set, zero value otherwise.
-func (o *Contact) GetSheets() Sheet {
+func (o *Contact) GetSheets() []Sheet {
 	if o == nil || IsNil(o.Sheets) {
-		var ret Sheet
+		var ret []Sheet
 		return ret
 	}
-	return *o.Sheets
+	return o.Sheets
 }
 
 // GetSheetsOk returns a tuple with the Sheets field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *Contact) GetSheetsOk() (*Sheet, bool) {
+func (o *Contact) GetSheetsOk() ([]Sheet, bool) {
 	if o == nil || IsNil(o.Sheets) {
 		return nil, false
 	}
@@ -969,9 +969,9 @@ func (o *Contact) HasSheets() bool {
 	return false
 }
 
-// SetSheets gets a reference to the given Sheet and assigns it to the Sheets field.
-func (o *Contact) SetSheets(v Sheet) {
-	o.Sheets = &v
+// SetSheets gets a reference to the given []Sheet and assigns it to the Sheets field.
+func (o *Contact) SetSheets(v []Sheet) {
+	o.Sheets = v
 }
 
 func (o Contact) MarshalJSON() ([]byte, error) {

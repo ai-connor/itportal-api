@@ -62,7 +62,7 @@ type Agreement struct {
 	InOutNotes *string `json:"inOutNotes,omitempty"`
 	// The date the agreement was most recently modified.
 	Modified             *string `json:"modified,omitempty"`
-	Sheets               *Sheet  `json:"sheets,omitempty"`
+	Sheets               []Sheet `json:"sheets,omitempty"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -833,17 +833,17 @@ func (o *Agreement) SetModified(v string) {
 }
 
 // GetSheets returns the Sheets field value if set, zero value otherwise.
-func (o *Agreement) GetSheets() Sheet {
+func (o *Agreement) GetSheets() []Sheet {
 	if o == nil || IsNil(o.Sheets) {
-		var ret Sheet
+		var ret []Sheet
 		return ret
 	}
-	return *o.Sheets
+	return o.Sheets
 }
 
 // GetSheetsOk returns a tuple with the Sheets field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *Agreement) GetSheetsOk() (*Sheet, bool) {
+func (o *Agreement) GetSheetsOk() ([]Sheet, bool) {
 	if o == nil || IsNil(o.Sheets) {
 		return nil, false
 	}
@@ -859,9 +859,9 @@ func (o *Agreement) HasSheets() bool {
 	return false
 }
 
-// SetSheets gets a reference to the given Sheet and assigns it to the Sheets field.
-func (o *Agreement) SetSheets(v Sheet) {
-	o.Sheets = &v
+// SetSheets gets a reference to the given []Sheet and assigns it to the Sheets field.
+func (o *Agreement) SetSheets(v []Sheet) {
+	o.Sheets = v
 }
 
 func (o Agreement) MarshalJSON() ([]byte, error) {

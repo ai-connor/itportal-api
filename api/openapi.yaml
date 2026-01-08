@@ -9565,7 +9565,14 @@ components:
               name: name
               id: 1
             sheets:
-              submittime: 2000-01-23
+            - submittime: 2000-01-23
+              name: name
+              description: description
+              modified: modified
+              id: id
+              submitdate: 2000-01-23
+              sheeturl: sheeturl
+            - submittime: 2000-01-23
               name: name
               description: description
               modified: modified
@@ -9632,7 +9639,14 @@ components:
               name: name
               id: 1
             sheets:
-              submittime: 2000-01-23
+            - submittime: 2000-01-23
+              name: name
+              description: description
+              modified: modified
+              id: id
+              submitdate: 2000-01-23
+              sheeturl: sheeturl
+            - submittime: 2000-01-23
               name: name
               description: description
               modified: modified
@@ -9724,7 +9738,14 @@ components:
             name: name
             id: 1
           sheets:
-            submittime: 2000-01-23
+          - submittime: 2000-01-23
+            name: name
+            description: description
+            modified: modified
+            id: id
+            submitdate: 2000-01-23
+            sheeturl: sheeturl
+          - submittime: 2000-01-23
             name: name
             description: description
             modified: modified
@@ -9791,7 +9812,14 @@ components:
             name: name
             id: 1
           sheets:
-            submittime: 2000-01-23
+          - submittime: 2000-01-23
+            name: name
+            description: description
+            modified: modified
+            id: id
+            submitdate: 2000-01-23
+            sheeturl: sheeturl
+          - submittime: 2000-01-23
             name: name
             description: description
             modified: modified
@@ -10154,7 +10182,14 @@ components:
             url: url
             password: password
             sheets:
-              submittime: 2000-01-23
+            - submittime: 2000-01-23
+              name: name
+              description: description
+              modified: modified
+              id: id
+              submitdate: 2000-01-23
+              sheeturl: sheeturl
+            - submittime: 2000-01-23
               name: name
               description: description
               modified: modified
@@ -10203,7 +10238,14 @@ components:
             url: url
             password: password
             sheets:
-              submittime: 2000-01-23
+            - submittime: 2000-01-23
+              name: name
+              description: description
+              modified: modified
+              id: id
+              submitdate: 2000-01-23
+              sheeturl: sheeturl
+            - submittime: 2000-01-23
               name: name
               description: description
               modified: modified
@@ -10277,7 +10319,14 @@ components:
           url: url
           password: password
           sheets:
-            submittime: 2000-01-23
+          - submittime: 2000-01-23
+            name: name
+            description: description
+            modified: modified
+            id: id
+            submitdate: 2000-01-23
+            sheeturl: sheeturl
+          - submittime: 2000-01-23
             name: name
             description: description
             modified: modified
@@ -10326,7 +10375,14 @@ components:
           url: url
           password: password
           sheets:
-            submittime: 2000-01-23
+          - submittime: 2000-01-23
+            name: name
+            description: description
+            modified: modified
+            id: id
+            submitdate: 2000-01-23
+            sheeturl: sheeturl
+          - submittime: 2000-01-23
             name: name
             description: description
             modified: modified
@@ -10653,7 +10709,14 @@ components:
               name: name
               id: 7
             sheets:
-              submittime: 2000-01-23
+            - submittime: 2000-01-23
+              name: name
+              description: description
+              modified: modified
+              id: id
+              submitdate: 2000-01-23
+              sheeturl: sheeturl
+            - submittime: 2000-01-23
               name: name
               description: description
               modified: modified
@@ -10703,7 +10766,14 @@ components:
               name: name
               id: 7
             sheets:
-              submittime: 2000-01-23
+            - submittime: 2000-01-23
+              name: name
+              description: description
+              modified: modified
+              id: id
+              submitdate: 2000-01-23
+              sheeturl: sheeturl
+            - submittime: 2000-01-23
               name: name
               description: description
               modified: modified
@@ -10778,7 +10848,14 @@ components:
             name: name
             id: 7
           sheets:
-            submittime: 2000-01-23
+          - submittime: 2000-01-23
+            name: name
+            description: description
+            modified: modified
+            id: id
+            submitdate: 2000-01-23
+            sheeturl: sheeturl
+          - submittime: 2000-01-23
             name: name
             description: description
             modified: modified
@@ -10828,7 +10905,14 @@ components:
             name: name
             id: 7
           sheets:
-            submittime: 2000-01-23
+          - submittime: 2000-01-23
+            name: name
+            description: description
+            modified: modified
+            id: id
+            submitdate: 2000-01-23
+            sheeturl: sheeturl
+          - submittime: 2000-01-23
             name: name
             description: description
             modified: modified
@@ -11009,7 +11093,14 @@ components:
             url: url
             foreignId: 3
             sheets:
-              submittime: 2000-01-23
+            - submittime: 2000-01-23
+              name: name
+              description: description
+              modified: modified
+              id: id
+              submitdate: 2000-01-23
+              sheeturl: sheeturl
+            - submittime: 2000-01-23
               name: name
               description: description
               modified: modified
@@ -11047,7 +11138,14 @@ components:
             url: url
             foreignId: 3
             sheets:
-              submittime: 2000-01-23
+            - submittime: 2000-01-23
+              name: name
+              description: description
+              modified: modified
+              id: id
+              submitdate: 2000-01-23
+              sheeturl: sheeturl
+            - submittime: 2000-01-23
               name: name
               description: description
               modified: modified
@@ -11110,7 +11208,14 @@ components:
           url: url
           foreignId: 3
           sheets:
-            submittime: 2000-01-23
+          - submittime: 2000-01-23
+            name: name
+            description: description
+            modified: modified
+            id: id
+            submitdate: 2000-01-23
+            sheeturl: sheeturl
+          - submittime: 2000-01-23
             name: name
             description: description
             modified: modified
@@ -11148,7 +11253,14 @@ components:
           url: url
           foreignId: 3
           sheets:
-            submittime: 2000-01-23
+          - submittime: 2000-01-23
+            name: name
+            description: description
+            modified: modified
+            id: id
+            submitdate: 2000-01-23
+            sheeturl: sheeturl
+          - submittime: 2000-01-23
             name: name
             description: description
             modified: modified
@@ -11216,7 +11328,14 @@ components:
               id: 7
             webSite: webSite
             sheets:
-              submittime: 2000-01-23
+            - submittime: 2000-01-23
+              name: name
+              description: description
+              modified: modified
+              id: id
+              submitdate: 2000-01-23
+              sheeturl: sheeturl
+            - submittime: 2000-01-23
               name: name
               description: description
               modified: modified
@@ -11271,7 +11390,14 @@ components:
               id: 7
             webSite: webSite
             sheets:
-              submittime: 2000-01-23
+            - submittime: 2000-01-23
+              name: name
+              description: description
+              modified: modified
+              id: id
+              submitdate: 2000-01-23
+              sheeturl: sheeturl
+            - submittime: 2000-01-23
               name: name
               description: description
               modified: modified
@@ -11351,7 +11477,14 @@ components:
             id: 7
           webSite: webSite
           sheets:
-            submittime: 2000-01-23
+          - submittime: 2000-01-23
+            name: name
+            description: description
+            modified: modified
+            id: id
+            submitdate: 2000-01-23
+            sheeturl: sheeturl
+          - submittime: 2000-01-23
             name: name
             description: description
             modified: modified
@@ -11406,7 +11539,14 @@ components:
             id: 7
           webSite: webSite
           sheets:
-            submittime: 2000-01-23
+          - submittime: 2000-01-23
+            name: name
+            description: description
+            modified: modified
+            id: id
+            submitdate: 2000-01-23
+            sheeturl: sheeturl
+          - submittime: 2000-01-23
             name: name
             description: description
             modified: modified
@@ -11580,7 +11720,14 @@ components:
             foreignId: 9
             numberOfPCs: 7
             sheets:
-              submittime: 2000-01-23
+            - submittime: 2000-01-23
+              name: name
+              description: description
+              modified: modified
+              id: id
+              submitdate: 2000-01-23
+              sheeturl: sheeturl
+            - submittime: 2000-01-23
               name: name
               description: description
               modified: modified
@@ -11628,7 +11775,14 @@ components:
             foreignId: 9
             numberOfPCs: 7
             sheets:
-              submittime: 2000-01-23
+            - submittime: 2000-01-23
+              name: name
+              description: description
+              modified: modified
+              id: id
+              submitdate: 2000-01-23
+              sheeturl: sheeturl
+            - submittime: 2000-01-23
               name: name
               description: description
               modified: modified
@@ -11701,7 +11855,14 @@ components:
           foreignId: 9
           numberOfPCs: 7
           sheets:
-            submittime: 2000-01-23
+          - submittime: 2000-01-23
+            name: name
+            description: description
+            modified: modified
+            id: id
+            submitdate: 2000-01-23
+            sheeturl: sheeturl
+          - submittime: 2000-01-23
             name: name
             description: description
             modified: modified
@@ -11749,7 +11910,14 @@ components:
           foreignId: 9
           numberOfPCs: 7
           sheets:
-            submittime: 2000-01-23
+          - submittime: 2000-01-23
+            name: name
+            description: description
+            modified: modified
+            id: id
+            submitdate: 2000-01-23
+            sheeturl: sheeturl
+          - submittime: 2000-01-23
             name: name
             description: description
             modified: modified
@@ -11832,7 +12000,14 @@ components:
               name: name
               id: 1
             sheets:
-              submittime: 2000-01-23
+            - submittime: 2000-01-23
+              name: name
+              description: description
+              modified: modified
+              id: id
+              submitdate: 2000-01-23
+              sheeturl: sheeturl
+            - submittime: 2000-01-23
               name: name
               description: description
               modified: modified
@@ -11883,7 +12058,14 @@ components:
               name: name
               id: 1
             sheets:
-              submittime: 2000-01-23
+            - submittime: 2000-01-23
+              name: name
+              description: description
+              modified: modified
+              id: id
+              submitdate: 2000-01-23
+              sheeturl: sheeturl
+            - submittime: 2000-01-23
               name: name
               description: description
               modified: modified
@@ -11959,7 +12141,14 @@ components:
             name: name
             id: 1
           sheets:
-            submittime: 2000-01-23
+          - submittime: 2000-01-23
+            name: name
+            description: description
+            modified: modified
+            id: id
+            submitdate: 2000-01-23
+            sheeturl: sheeturl
+          - submittime: 2000-01-23
             name: name
             description: description
             modified: modified
@@ -12010,7 +12199,14 @@ components:
             name: name
             id: 1
           sheets:
-            submittime: 2000-01-23
+          - submittime: 2000-01-23
+            name: name
+            description: description
+            modified: modified
+            id: id
+            submitdate: 2000-01-23
+            sheeturl: sheeturl
+          - submittime: 2000-01-23
             name: name
             description: description
             modified: modified
@@ -12099,7 +12295,14 @@ components:
               name: name
               id: 1
             sheets:
-              submittime: 2000-01-23
+            - submittime: 2000-01-23
+              name: name
+              description: description
+              modified: modified
+              id: id
+              submitdate: 2000-01-23
+              sheeturl: sheeturl
+            - submittime: 2000-01-23
               name: name
               description: description
               modified: modified
@@ -12151,7 +12354,14 @@ components:
               name: name
               id: 1
             sheets:
-              submittime: 2000-01-23
+            - submittime: 2000-01-23
+              name: name
+              description: description
+              modified: modified
+              id: id
+              submitdate: 2000-01-23
+              sheeturl: sheeturl
+            - submittime: 2000-01-23
               name: name
               description: description
               modified: modified
@@ -12228,7 +12438,14 @@ components:
             name: name
             id: 1
           sheets:
-            submittime: 2000-01-23
+          - submittime: 2000-01-23
+            name: name
+            description: description
+            modified: modified
+            id: id
+            submitdate: 2000-01-23
+            sheeturl: sheeturl
+          - submittime: 2000-01-23
             name: name
             description: description
             modified: modified
@@ -12280,7 +12497,14 @@ components:
             name: name
             id: 1
           sheets:
-            submittime: 2000-01-23
+          - submittime: 2000-01-23
+            name: name
+            description: description
+            modified: modified
+            id: id
+            submitdate: 2000-01-23
+            sheeturl: sheeturl
+          - submittime: 2000-01-23
             name: name
             description: description
             modified: modified
@@ -12420,7 +12644,14 @@ components:
               id: 7
             url: url
             sheets:
-              submittime: 2000-01-23
+            - submittime: 2000-01-23
+              name: name
+              description: description
+              modified: modified
+              id: id
+              submitdate: 2000-01-23
+              sheeturl: sheeturl
+            - submittime: 2000-01-23
               name: name
               description: description
               modified: modified
@@ -12452,7 +12683,14 @@ components:
               id: 7
             url: url
             sheets:
-              submittime: 2000-01-23
+            - submittime: 2000-01-23
+              name: name
+              description: description
+              modified: modified
+              id: id
+              submitdate: 2000-01-23
+              sheeturl: sheeturl
+            - submittime: 2000-01-23
               name: name
               description: description
               modified: modified
@@ -12509,7 +12747,14 @@ components:
             id: 7
           url: url
           sheets:
-            submittime: 2000-01-23
+          - submittime: 2000-01-23
+            name: name
+            description: description
+            modified: modified
+            id: id
+            submitdate: 2000-01-23
+            sheeturl: sheeturl
+          - submittime: 2000-01-23
             name: name
             description: description
             modified: modified
@@ -12541,7 +12786,14 @@ components:
             id: 7
           url: url
           sheets:
-            submittime: 2000-01-23
+          - submittime: 2000-01-23
+            name: name
+            description: description
+            modified: modified
+            id: id
+            submitdate: 2000-01-23
+            sheeturl: sheeturl
+          - submittime: 2000-01-23
             name: name
             description: description
             modified: modified
@@ -12740,7 +12992,14 @@ components:
             warrantyExpires: 2000-01-23
             manufacturer: manufacturer
             sheets:
-              submittime: 2000-01-23
+            - submittime: 2000-01-23
+              name: name
+              description: description
+              modified: modified
+              id: id
+              submitdate: 2000-01-23
+              sheeturl: sheeturl
+            - submittime: 2000-01-23
               name: name
               description: description
               modified: modified
@@ -12864,7 +13123,14 @@ components:
             warrantyExpires: 2000-01-23
             manufacturer: manufacturer
             sheets:
-              submittime: 2000-01-23
+            - submittime: 2000-01-23
+              name: name
+              description: description
+              modified: modified
+              id: id
+              submitdate: 2000-01-23
+              sheeturl: sheeturl
+            - submittime: 2000-01-23
               name: name
               description: description
               modified: modified
@@ -13013,7 +13279,14 @@ components:
           warrantyExpires: 2000-01-23
           manufacturer: manufacturer
           sheets:
-            submittime: 2000-01-23
+          - submittime: 2000-01-23
+            name: name
+            description: description
+            modified: modified
+            id: id
+            submitdate: 2000-01-23
+            sheeturl: sheeturl
+          - submittime: 2000-01-23
             name: name
             description: description
             modified: modified
@@ -13137,7 +13410,14 @@ components:
           warrantyExpires: 2000-01-23
           manufacturer: manufacturer
           sheets:
-            submittime: 2000-01-23
+          - submittime: 2000-01-23
+            name: name
+            description: description
+            modified: modified
+            id: id
+            submitdate: 2000-01-23
+            sheeturl: sheeturl
+          - submittime: 2000-01-23
             name: name
             description: description
             modified: modified
@@ -13560,7 +13840,14 @@ components:
               name: name
               id: 1
             sheets:
-              submittime: 2000-01-23
+            - submittime: 2000-01-23
+              name: name
+              description: description
+              modified: modified
+              id: id
+              submitdate: 2000-01-23
+              sheeturl: sheeturl
+            - submittime: 2000-01-23
               name: name
               description: description
               modified: modified
@@ -13603,7 +13890,14 @@ components:
               name: name
               id: 1
             sheets:
-              submittime: 2000-01-23
+            - submittime: 2000-01-23
+              name: name
+              description: description
+              modified: modified
+              id: id
+              submitdate: 2000-01-23
+              sheeturl: sheeturl
+            - submittime: 2000-01-23
               name: name
               description: description
               modified: modified
@@ -13671,7 +13965,14 @@ components:
             name: name
             id: 1
           sheets:
-            submittime: 2000-01-23
+          - submittime: 2000-01-23
+            name: name
+            description: description
+            modified: modified
+            id: id
+            submitdate: 2000-01-23
+            sheeturl: sheeturl
+          - submittime: 2000-01-23
             name: name
             description: description
             modified: modified
@@ -13714,7 +14015,14 @@ components:
             name: name
             id: 1
           sheets:
-            submittime: 2000-01-23
+          - submittime: 2000-01-23
+            name: name
+            description: description
+            modified: modified
+            id: id
+            submitdate: 2000-01-23
+            sheeturl: sheeturl
+          - submittime: 2000-01-23
             name: name
             description: description
             modified: modified
@@ -13784,7 +14092,14 @@ components:
             article: article
             url: url
             sheets:
-              submittime: 2000-01-23
+            - submittime: 2000-01-23
+              name: name
+              description: description
+              modified: modified
+              id: id
+              submitdate: 2000-01-23
+              sheeturl: sheeturl
+            - submittime: 2000-01-23
               name: name
               description: description
               modified: modified
@@ -13819,7 +14134,14 @@ components:
             article: article
             url: url
             sheets:
-              submittime: 2000-01-23
+            - submittime: 2000-01-23
+              name: name
+              description: description
+              modified: modified
+              id: id
+              submitdate: 2000-01-23
+              sheeturl: sheeturl
+            - submittime: 2000-01-23
               name: name
               description: description
               modified: modified
@@ -13879,7 +14201,14 @@ components:
           article: article
           url: url
           sheets:
-            submittime: 2000-01-23
+          - submittime: 2000-01-23
+            name: name
+            description: description
+            modified: modified
+            id: id
+            submitdate: 2000-01-23
+            sheeturl: sheeturl
+          - submittime: 2000-01-23
             name: name
             description: description
             modified: modified
@@ -13914,7 +14243,14 @@ components:
           article: article
           url: url
           sheets:
-            submittime: 2000-01-23
+          - submittime: 2000-01-23
+            name: name
+            description: description
+            modified: modified
+            id: id
+            submitdate: 2000-01-23
+            sheeturl: sheeturl
+          - submittime: 2000-01-23
             name: name
             description: description
             modified: modified
@@ -14229,7 +14565,14 @@ components:
           name: name
           id: 1
         sheets:
-          submittime: 2000-01-23
+        - submittime: 2000-01-23
+          name: name
+          description: description
+          modified: modified
+          id: id
+          submitdate: 2000-01-23
+          sheeturl: sheeturl
+        - submittime: 2000-01-23
           name: name
           description: description
           modified: modified
@@ -14348,7 +14691,9 @@ components:
           readOnly: true
           type: string
         sheets:
-          $ref: "#/components/schemas/Sheet"
+          items:
+            $ref: "#/components/schemas/Sheet"
+          type: array
       required:
       - accountManager
       - assignedEngineer
@@ -14419,7 +14764,14 @@ components:
         url: url
         password: password
         sheets:
-          submittime: 2000-01-23
+        - submittime: 2000-01-23
+          name: name
+          description: description
+          modified: modified
+          id: id
+          submitdate: 2000-01-23
+          sheeturl: sheeturl
+        - submittime: 2000-01-23
           name: name
           description: description
           modified: modified
@@ -14519,7 +14871,9 @@ components:
           readOnly: true
           type: string
         sheets:
-          $ref: "#/components/schemas/Sheet"
+          items:
+            $ref: "#/components/schemas/Sheet"
+          type: array
       required:
       - company
       - name
@@ -14552,7 +14906,14 @@ components:
           name: name
           id: 7
         sheets:
-          submittime: 2000-01-23
+        - submittime: 2000-01-23
+          name: name
+          description: description
+          modified: modified
+          id: id
+          submitdate: 2000-01-23
+          sheeturl: sheeturl
+        - submittime: 2000-01-23
           name: name
           description: description
           modified: modified
@@ -14677,7 +15038,9 @@ components:
           readOnly: true
           type: string
         sheets:
-          $ref: "#/components/schemas/Sheet"
+          items:
+            $ref: "#/components/schemas/Sheet"
+          type: array
       required:
       - company
       - name
@@ -14757,7 +15120,14 @@ components:
         url: url
         foreignId: 3
         sheets:
-          submittime: 2000-01-23
+        - submittime: 2000-01-23
+          name: name
+          description: description
+          modified: modified
+          id: id
+          submitdate: 2000-01-23
+          sheeturl: sheeturl
+        - submittime: 2000-01-23
           name: name
           description: description
           modified: modified
@@ -14841,7 +15211,9 @@ components:
           readOnly: true
           type: string
         sheets:
-          $ref: "#/components/schemas/Sheet"
+          items:
+            $ref: "#/components/schemas/Sheet"
+          type: array
       required:
       - company
       - name
@@ -14877,7 +15249,14 @@ components:
           id: 7
         webSite: webSite
         sheets:
-          submittime: 2000-01-23
+        - submittime: 2000-01-23
+          name: name
+          description: description
+          modified: modified
+          id: id
+          submitdate: 2000-01-23
+          sheeturl: sheeturl
+        - submittime: 2000-01-23
           name: name
           description: description
           modified: modified
@@ -15019,7 +15398,9 @@ components:
           readOnly: true
           type: string
         sheets:
-          $ref: "#/components/schemas/Sheet"
+          items:
+            $ref: "#/components/schemas/Sheet"
+          type: array
       required:
       - company
       - type
@@ -15123,7 +15504,14 @@ components:
         foreignId: 9
         numberOfPCs: 7
         sheets:
-          submittime: 2000-01-23
+        - submittime: 2000-01-23
+          name: name
+          description: description
+          modified: modified
+          id: id
+          submitdate: 2000-01-23
+          sheeturl: sheeturl
+        - submittime: 2000-01-23
           name: name
           description: description
           modified: modified
@@ -15202,7 +15590,9 @@ components:
           readOnly: true
           type: string
         sheets:
-          $ref: "#/components/schemas/Sheet"
+          items:
+            $ref: "#/components/schemas/Sheet"
+          type: array
       required:
       - company
       - name
@@ -15251,7 +15641,14 @@ components:
           name: name
           id: 1
         sheets:
-          submittime: 2000-01-23
+        - submittime: 2000-01-23
+          name: name
+          description: description
+          modified: modified
+          id: id
+          submitdate: 2000-01-23
+          sheeturl: sheeturl
+        - submittime: 2000-01-23
           name: name
           description: description
           modified: modified
@@ -15324,7 +15721,9 @@ components:
           readOnly: true
           type: string
         sheets:
-          $ref: "#/components/schemas/Sheet"
+          items:
+            $ref: "#/components/schemas/Sheet"
+          type: array
       required:
       - company
       - name
@@ -15376,7 +15775,14 @@ components:
           name: name
           id: 1
         sheets:
-          submittime: 2000-01-23
+        - submittime: 2000-01-23
+          name: name
+          description: description
+          modified: modified
+          id: id
+          submitdate: 2000-01-23
+          sheeturl: sheeturl
+        - submittime: 2000-01-23
           name: name
           description: description
           modified: modified
@@ -15451,7 +15857,9 @@ components:
           readOnly: true
           type: string
         sheets:
-          $ref: "#/components/schemas/Sheet"
+          items:
+            $ref: "#/components/schemas/Sheet"
+          type: array
       required:
       - company
       - name
@@ -15505,7 +15913,14 @@ components:
           id: 7
         url: url
         sheets:
-          submittime: 2000-01-23
+        - submittime: 2000-01-23
+          name: name
+          description: description
+          modified: modified
+          id: id
+          submitdate: 2000-01-23
+          sheeturl: sheeturl
+        - submittime: 2000-01-23
           name: name
           description: description
           modified: modified
@@ -15574,7 +15989,9 @@ components:
           readOnly: true
           type: string
         sheets:
-          $ref: "#/components/schemas/Sheet"
+          items:
+            $ref: "#/components/schemas/Sheet"
+          type: array
       required:
       - company
       - name
@@ -15691,7 +16108,14 @@ components:
         warrantyExpires: 2000-01-23
         manufacturer: manufacturer
         sheets:
-          submittime: 2000-01-23
+        - submittime: 2000-01-23
+          name: name
+          description: description
+          modified: modified
+          id: id
+          submitdate: 2000-01-23
+          sheeturl: sheeturl
+        - submittime: 2000-01-23
           name: name
           description: description
           modified: modified
@@ -15924,7 +16348,9 @@ components:
           readOnly: true
           type: string
         sheets:
-          $ref: "#/components/schemas/Sheet"
+          items:
+            $ref: "#/components/schemas/Sheet"
+          type: array
       required:
       - company
       - hostName
@@ -16202,7 +16628,14 @@ components:
           name: name
           id: 1
         sheets:
-          submittime: 2000-01-23
+        - submittime: 2000-01-23
+          name: name
+          description: description
+          modified: modified
+          id: id
+          submitdate: 2000-01-23
+          sheeturl: sheeturl
+        - submittime: 2000-01-23
           name: name
           description: description
           modified: modified
@@ -16281,7 +16714,9 @@ components:
           readOnly: true
           type: string
         sheets:
-          $ref: "#/components/schemas/Sheet"
+          items:
+            $ref: "#/components/schemas/Sheet"
+          type: array
       required:
       - company
       - name
@@ -16779,7 +17214,14 @@ components:
         article: article
         url: url
         sheets:
-          submittime: 2000-01-23
+        - submittime: 2000-01-23
+          name: name
+          description: description
+          modified: modified
+          id: id
+          submitdate: 2000-01-23
+          sheeturl: sheeturl
+        - submittime: 2000-01-23
           name: name
           description: description
           modified: modified
@@ -16853,7 +17295,9 @@ components:
           readOnly: true
           type: string
         sheets:
-          $ref: "#/components/schemas/Sheet"
+          items:
+            $ref: "#/components/schemas/Sheet"
+          type: array
       required:
       - category
       - name
